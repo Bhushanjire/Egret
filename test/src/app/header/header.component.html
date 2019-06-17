@@ -1,0 +1,28 @@
+<mat-toolbar>
+      <span>
+          <div class="example-sidenav-content">
+              <img src = "/assets/images/hideshow.svg" (click)="hideshow()" style="cursor: pointer;">
+            </div>
+      </span>
+      <!-- This fills the remaining space of the current row -->
+      <span class="example-fill-remaining-space"></span>
+      <span><div style="float:right;">
+          <span class="example-fill-remaining-space"></span>
+          <span class=""><mat-icon matBadge="15" matBadgeColor="warn"><img src="/assets/images/notification.png"  class="rounded-circle" style="width: 30px;cursor: pointer;" ></mat-icon>
+          </span>&nbsp;&nbsp;
+          <span class="">
+          <img src="/assets/images/profile.jpeg" mat-button [matMenuTriggerFor]="menu" style="width: 50px;cursor: pointer;">
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/profile">Profile</button>
+            <button mat-menu-item routerLink="/setting" >Account Setting</button>
+            <button mat-menu-item>Disable Alerts</button>
+            <button mat-menu-item>Sign Out</button>
+          </mat-menu>
+        </span>
+        </div></span>
+    </mat-toolbar>
+  
+
+
+
+    
