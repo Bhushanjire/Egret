@@ -1,0 +1,165 @@
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-12" style="height: 30px">
+        Shop / Checkout
+    </div>
+</div>
+ <form (ngSubmit)='placeOrder(checkoutForm)' [formGroup]="checkoutForm">
+    <legend>Billing Address</legend>
+<div class="row">
+<div class="col-lg-8">
+    <mat-card>
+    <div class="row">
+        <div class="col">
+                <div class="example-container">
+                <mat-form-field>
+                        <mat-select placeholder="Country" formControlName="bcountry">
+                          <mat-option value="option" *ngFor="let county of Country">{{county}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="blast_name">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Address Line 1" formControlName="baddrline1">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="City" formControlName="bcity">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Phone" formControlName="bphone">
+                        </mat-form-field>
+                        </div>
+                        </div>
+        
+        <div class="col">
+                <div class="example-container">
+                <mat-form-field>
+                        <input matInput placeholder="First Name" formControlName="bfirst_name">
+                        </mat-form-field>
+                        <mat-form-field>
+                        <input matInput placeholder="Company" formControlName="bcomp_name">
+                        </mat-form-field>
+                        <mat-form-field>
+                        <input matInput placeholder="Address Line 2" formControlName="baddrline2">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="ZIP" formControlName="bzip">
+                            </mat-form-field>
+                            <mat-form-field>
+                                    <input matInput placeholder="Email" formControlName="bemail">
+                                    </mat-form-field>
+            </div>
+    </div>
+
+              </div>
+            </mat-card>
+<div class="row">
+        <mat-list role="list">
+                <mat-list-item role="listitem"><mat-checkbox>Create an account</mat-checkbox>
+                </mat-list-item>
+                <mat-list-item role="listitem"><mat-checkbox (change)="shippingAddress($event)">Alternative shipping address</mat-checkbox>
+                </mat-list-item>
+                
+              </mat-list>
+</div>
+
+<div class="row" *ngIf="shippingAdress">
+        <div class="col">
+                <div class="example-container">
+                <mat-form-field>
+                        <mat-select placeholder="Country" formControlName="scountry">
+                          <mat-option value="option" *ngFor="let county of Country">{{county}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Last Name" formControlName="slast_name">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Address Line 1" formControlName="saddrline1">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="City" formControlName="scity">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput placeholder="Phone" formControlName="sphone">
+                        </mat-form-field>
+                        </div>
+                        </div>
+        
+        <div class="col">
+                <div class="example-container">
+                <mat-form-field>
+                        <input matInput placeholder="First Name" formControlName="sfirst_name">
+                        </mat-form-field>
+                        <mat-form-field>
+                        <input matInput placeholder="Company" formControlName="scomp_name">
+                        </mat-form-field>
+                        <mat-form-field>
+                        <input matInput placeholder="Address Line 2" formControlName="saddrline2">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput placeholder="ZIP" formControlName="szip">
+                            </mat-form-field>
+                            <mat-form-field>
+                                    <input matInput placeholder="Email" formControlName="semail">
+                                    </mat-form-field>
+            </div>
+    </div>
+
+              </div>
+
+</div>
+
+
+<div class="col-lg-4">
+        <mat-card>
+        <mat-card-content>	
+        <mat-list>
+                <mat-list-item>  Your Order </mat-list-item>
+               
+               </mat-list>
+              
+
+        <mat-selection-list>
+                <mat-list-item *ngFor="let cartData of dataSource">
+                    <div class="mat-list-item-content" style="flex-direction: row; box-sizing: border-box; display: flex;"><div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div><img _ngcontent-irl-c28="" alt="" class="mr-1 mat-list-avatar ng-tns-c28-25" mat-list-avatar="" src="/assets/images/{{cartData.main_image}}">
+                    <div class="mat-list-text"></div><div _ngcontent-irl-c28="" fxflex="100" fxlayout="row" class="ng-tns-c28-25" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;">
+                        <h6 _ngcontent-irl-c28="" class="m-0 mr-1 text-muted"><small _ngcontent-irl-c28="" class="ng-tns-c28-25">{{cartData.name}} x {{cartData.quantity}}</small>
+                        </h6><span _ngcontent-irl-c28="" class="ng-tns-c28-25" fxflex="" style="flex: 1 1 0%; box-sizing: border-box;"></span>
+                        <div _ngcontent-irl-c28="" class="text-muted">${{cartData.price1*cartData.quantity}}</div>
+                    </div>
+                    <mat-divider _ngcontent-irl-c28="" class="mat-divider ng-tns-c28-25 mat-divider-horizontal" role="separator" aria-orientation="horizontal"></mat-divider></div>
+                </mat-list-item>
+                <mat-list-item _ngcontent-irl-c28="" class="mat-list-item ng-tns-c28-25"><div class="mat-list-item-content" style="flex-direction: row; box-sizing: border-box; display: flex;"><div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div><div class="mat-list-text"></div><div _ngcontent-irl-c28="" fxflex="56px" class="ng-tns-c28-25" style="flex: 1 1 56px; box-sizing: border-box; max-width: 56px; min-width: 56px;"></div><div _ngcontent-irl-c28="" fxflex="100" fxlayout="row" class="ng-tns-c28-25" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;"><h6 _ngcontent-irl-c28="" class="m-0 mr-1 text-muted"><small _ngcontent-irl-c28="" class="ng-tns-c28-25"><strong _ngcontent-irl-c28="" class="ng-tns-c28-25">Subtotal:</strong></small></h6><span _ngcontent-irl-c28="" class="ng-tns-c28-25" fxflex="" style="flex: 1 1 0%; box-sizing: border-box;"></span><div _ngcontent-irl-c28="" class="text-muted">${{subtotal}}</div></div><mat-divider _ngcontent-irl-c28="" class="mat-divider ng-tns-c28-25 mat-divider-horizontal" role="separator" aria-orientation="horizontal"></mat-divider></div></mat-list-item>
+                <mat-list-item _ngcontent-irl-c28="" class="mat-list-item ng-tns-c28-25"><div class="mat-list-item-content" style="flex-direction: row; box-sizing: border-box; display: flex;"><div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div><div class="mat-list-text"></div><div _ngcontent-irl-c28="" fxflex="56px" class="ng-tns-c28-25" style="flex: 1 1 56px; box-sizing: border-box; max-width: 56px; min-width: 56px;"></div><div _ngcontent-irl-c28="" fxflex="100" fxlayout="row" class="ng-tns-c28-25" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;"><h6 _ngcontent-irl-c28="" class="m-0 mr-1 text-muted"><small _ngcontent-irl-c28="" class="ng-tns-c28-25"><strong _ngcontent-irl-c28="" class="ng-tns-c28-25">Vat:</strong></small></h6><span _ngcontent-irl-c28="" class="ng-tns-c28-25" fxflex="" style="flex: 1 1 0%; box-sizing: border-box;"></span><div _ngcontent-irl-c28="" class="text-muted">15%</div></div><mat-divider _ngcontent-irl-c28="" class="mat-divider ng-tns-c28-25 mat-divider-horizontal" role="separator" aria-orientation="horizontal"></mat-divider></div></mat-list-item>
+                <mat-list-item _ngcontent-irl-c28="" class="mat-list-item ng-tns-c28-25"><div class="mat-list-item-content" style="flex-direction: row; box-sizing: border-box; display: flex;"><div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div><div class="mat-list-text"></div><div _ngcontent-irl-c28="" fxflex="56px" class="ng-tns-c28-25" style="flex: 1 1 56px; box-sizing: border-box; max-width: 56px; min-width: 56px;"></div><div _ngcontent-irl-c28="" fxflex="100" fxlayout="row" class="ng-tns-c28-25" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;"><h6 _ngcontent-irl-c28="" class="m-0 mr-1 text-muted"><small _ngcontent-irl-c28="" class="ng-tns-c28-25"><strong _ngcontent-irl-c28="" class="ng-tns-c28-25">Shipping:</strong></small></h6><span _ngcontent-irl-c28="" class="ng-tns-c28-25" fxflex="" style="flex: 1 1 0%; box-sizing: border-box;"></span><div _ngcontent-irl-c28="" class="text-muted">Free</div></div><mat-divider _ngcontent-irl-c28="" class="mat-divider ng-tns-c28-25 mat-divider-horizontal" role="separator" aria-orientation="horizontal"></mat-divider></div></mat-list-item>
+                <mat-list-item _ngcontent-irl-c28="" class="mat-list-item ng-tns-c28-25"><div class="mat-list-item-content" style="flex-direction: row; box-sizing: border-box; display: flex;"><div class="mat-list-item-ripple mat-ripple" mat-ripple=""></div><div class="mat-list-text"></div><div _ngcontent-irl-c28="" fxflex="56px" class="ng-tns-c28-25" style="flex: 1 1 56px; box-sizing: border-box; max-width: 56px; min-width: 56px;"></div><div _ngcontent-irl-c28="" fxflex="100" fxlayout="row" class="ng-tns-c28-25" style="flex-direction: row; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 100%;"><h6 _ngcontent-irl-c28="" class="m-0 mr-1 text-muted"><small _ngcontent-irl-c28="" class="ng-tns-c28-25"><strong _ngcontent-irl-c28="" class="ng-tns-c28-25">Total:</strong></small></h6><span _ngcontent-irl-c28="" class="ng-tns-c28-25" fxflex="" style="flex: 1 1 0%; box-sizing: border-box;"></span><div _ngcontent-irl-c28="" class="text-muted">${{total}}</div></div><mat-divider _ngcontent-irl-c28="" class="mat-divider ng-tns-c28-25 mat-divider-horizontal" role="separator" aria-orientation="horizontal"></mat-divider></div></mat-list-item>
+                <br><br>
+                <mat-list-item>
+                <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="1">Paypal</mat-radio-button> <br>
+                <mat-radio-button value="2">Credit Card</mat-radio-button><br>
+                 <mat-radio-button value="2">Bank Transfer</mat-radio-button>
+                </mat-radio-group>
+                </mat-list-item>
+                <br>
+                <mat-list-item>
+                        <button mat-raised-button color="primary" routerLink='/cart'>Back To Cart</button>&nbsp;&nbsp;
+                        <button mat-raised-button color="accent" [disabled]="checkoutForm.invalid">Place Order</button>
+                </mat-list-item>
+                
+                
+
+            </mat-selection-list>
+       
+        </mat-card-content>	
+                </mat-card>
+    </div>
+
+
+</div>
+
+</form>
+
+</div>

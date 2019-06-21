@@ -1,0 +1,95 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <div class="container-fluid">
+      <div class="row" style="margin-top : 10px">
+        <div class="col-sm-8">
+            <img src="/assets/images/logo-lg.png" style="width: 15px;cursor: pointer;">
+            &nbsp;<span style="font-size:2ch;font-weight: 500">EGRET</span>
+        </div>
+        <div class="col-sm-4 text-right">
+          <mat-slide-toggle></mat-slide-toggle>
+        </div>
+      </div>
+      <div class="row contentCenter" style="margin-top: 30px">
+        <div class="col">
+          <img src="/assets/images/profile.jpeg" class="rounded-circle" width="100px" height="100px">
+          <br> <img src="/assets/images/lock.svg" style="width: 15px"><label> Watson Joyce</label>
+          <br>
+          <img src="/assets/images/setting.svg" mat-button [matMenuTriggerFor]="menu"
+            style="width: 15px;cursor: pointer;">
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/profile"><mat-icon>account_box</mat-icon>Profile</button>
+            <button mat-menu-item routerLink="/setting"><mat-icon>settings</mat-icon>Account Setting</button>
+            <button mat-menu-item routerLink="/calendar"><mat-icon>date_range</mat-icon>Calender </button>
+            <button mat-menu-item (click)="signout()" ><mat-icon>exit_to_app</mat-icon>Sign Out</button>
+          </mat-menu>&nbsp;
+          <img src="/assets/images/email.svg" style="width: 15px;cursor: pointer;" matTooltip="Inbox">&nbsp;
+          <img src="/assets/images/logout.svg" style="width: 15px;cursor: pointer;" matTooltip="Sign Out" (click)="signout()">
+        </div>
+      </div>
+      <mat-divider class="matDivider"></mat-divider>
+      <span style="font-size:12px"> Frequently Accessed</span> <br><br>
+      <div>
+        <div class="row">
+          <div class="col">
+            <button mat-raised-button>
+              <mat-icon>home</mat-icon>
+            </button>&nbsp;
+            <button mat-raised-button routerLink="/profile">
+              <mat-icon>person</mat-icon>
+            </button>&nbsp;
+            <button mat-raised-button>
+              <mat-icon>flight_takeoff</mat-icon>
+            </button>&nbsp;
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-divider class="matDivider"></mat-divider>
+    <div class="row container-fluid">
+      <div class="col">
+        <span style="font-size:12px">Main Items</span>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 10px;margin-bottom: 10px">
+      <div class="col">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>dashboard</mat-icon>&nbsp;&nbsp;Dashboard
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item class="cusrsor mainItemFont" routerLink='/user/default'>Default</mat-list-item>
+              <mat-list-item class="cusrsor mainItemFont" routerLink='/user/analytics'> Analytics </mat-list-item>
+              <mat-list-item class="cusrsor mainItemFont"> Cryptocurrency </mat-list-item>
+              <mat-list-item class="cusrsor mainItemFont"> Dark Cards </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>shopping_cart</mat-icon>&nbsp;&nbsp; Ecommerce
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item routerLink="/productlist" class="cusrsor mainItemFont"> Product </mat-list-item>
+              <mat-list-item routerLink="/productdetail" class="cusrsor mainItemFont"> Product Details </mat-list-item>
+              <mat-list-item routerLink="/cart" class="cusrsor mainItemFont"> Cart </mat-list-item>
+              <mat-list-item routerLink="/checkout" class="cusrsor mainItemFont"> Checkout </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+
+  </mat-drawer>
+  <app-header (drowerEvent)="drawer.toggle()"></app-header>
+  <div class="container-fluid" style="margin-top:10px">
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

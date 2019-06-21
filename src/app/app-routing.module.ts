@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ProductlistComponent } from './productlist/productlist.component';
-import { SettingComponent } from './setting/setting.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { ProductdetailComponent } from './productdetail/productdetail.component';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './auth.guard';
+
+
+
 
 const routes: Routes = [
-  {path : '',component:ProductlistComponent},
-  {path : 'profile',component:ProfileComponent},
-  {path : 'setting',component:SettingComponent},
-  {path : 'calendar',component:CalendarComponent},
-  {path : 'productlist',component:ProductlistComponent},
-  {path : 'cart',component:CartComponent},
-  {path : 'checkout',component:CheckoutComponent},
-  {path : 'productdetail',component:ProductdetailComponent},
-  {path : 'signin',component:SigninComponent},
-  {path : 'signup',component:SignupComponent} 
+  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then(mod => mod.UserModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./account/account.module').then(mod => mod.AccountModule)
+  },
   
+
 ];
 
 @NgModule({

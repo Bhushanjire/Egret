@@ -1,0 +1,254 @@
+<div class="container-fluid" style="margin-bottom: 10px">
+  <div class="row">
+    <div class="col">
+      Dashboard / Default
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col">
+      <mat-card>
+        <mat-card-content>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col label1 text-muted padding_margin_zero">Total Sales</div>
+              <div class="col text-right padding_margin_zero">
+                <mat-chip-list class="padding_margin_zero">
+                  <mat-chip class="icon-chip" color="primary" selected>
+                    <mat-icon class="mat-icon">trending_up</mat-icon>20%
+                  </mat-chip>
+                </mat-chip-list>
+              </div>
+            </div>
+            <div class="divSpace1"></div>
+            <div class="row">
+              <div class="col padding_margin_zero">22,450 <br>
+                <span class="text-muted label2">Monthly</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card>
+        <mat-card-content>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col label1 text-muted padding_margin_zero">Revenue</div>
+              <div class="col text-right padding_margin_zero">
+                <mat-chip class="icon-chip" color="accent" selected>
+                  <mat-icon class="mat-icon">trending_up</mat-icon>10%
+                </mat-chip>
+              </div>
+            </div>
+            <div class="divSpace1"></div>
+            <div class="row">
+              <div class="col padding_margin_zero">377,670<br>
+                <span class="text-muted label2">Monthly</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card>
+        <mat-card-content>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col label1 text-muted padding_margin_zero">Traffic
+              </div>
+              <div class="col text-right padding_margin_zero">
+                <mat-chip class="icon-chip" color="accent" selected>
+                  <mat-icon class="mat-icon">trending_up</mat-icon>9%
+                </mat-chip>
+              </div>
+            </div>
+            <div class="divSpace1"></div>
+            <div class="row">
+              <div class="col padding_margin_zero">54,845 <br>
+                <span class="text-muted label2">Monthly</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card>
+        <mat-card-content>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col label1 text-muted padding_margin_zero">New User</div>
+              <div class="col text-right padding_margin_zero">
+                <mat-chip class="icon-chip" color="warn" selected>
+                  <mat-icon class="mat-icon">trending_down</mat-icon>2%
+                </mat-chip>
+              </div>
+            </div>
+            <div class="divSpace1"></div>
+            <div class="row">
+              <div class="col padding_margin_zero">245 <br>
+                <span class="text-muted label2">Monthly</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="spanSpace"></div>
+  <div class="row">
+    <div class="col">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle> Orders<br>
+            Orders vs New user registrations</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div [chart]="chart"></div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="row">
+        <div class="col">
+          <mat-card>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item>
+                  <div class="row">
+                    <div class="col-sm-10 padding_margin_zero">Top Campaign Performance
+                    </div>
+                    <div class="col-sm-2 pull-right padding_margin_zero">
+                      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                          <mat-icon>settings</mat-icon>
+                          <span>Campaign Setting</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>do_not_disturb</mat-icon>
+                          <span>Disable All Campaign</span>
+                        </button>
+                        <button mat-menu-item>
+                          <mat-icon>close</mat-icon>
+                          <span>Remove Panel</span>
+                        </button>
+                      </mat-menu>
+                    </div>
+                  </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item *ngFor = "let data of topCompaign" class="text-muted recentFirst">
+                  <div>{{data.name}}</div>
+                  <mat-progress-bar mode="determinate" value="{{data.value}}" color="{{data.color}}"></mat-progress-bar>
+                  
+                </mat-list-item>
+              </mat-list>
+             
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="row">
+        <div class="col">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Recent Tickets
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-nav-list>
+                <a mat-list-item *ngFor="let recentData of recentTikets">
+                  <div class="row rowWidth">
+                    <div class="col recentFirst">
+                      <img src="/assets/images/{{recentData.photo}}" mat-button [matMenuTriggerFor]="menu"
+                        class="rounded-circle" style="width: 50px;cursor: pointer;">
+                      &nbsp;{{recentData.colData1}}
+                    </div>
+                    <div class="col recentSecond">
+                      {{recentData.colData2}}
+                    </div>
+                    <div class="col recentThird text-muted text-right padding_margin_zero">
+                      {{recentData.colData3}}
+                      <mat-chip>{{recentData.status}}</mat-chip>
+                    </div>
+                  </div>
+                </a>
+              </mat-nav-list>
+              <div class="text-center">
+                <button mat-flat-button style="width: 100%">View all</button>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <mat-card>
+              <mat-card-content>
+                  <mat-nav-list>
+                      <a mat-list-item>
+                          <div class="row rowWidth">
+                              <div class="col recentFirst">
+                                  Sprints
+                              </div>
+                              <div class="col recentFirst">
+                                Manager
+                              </div>
+                              <div class="col recentThird  padding_margin_zero">
+                                Progress
+                              </div>
+                            </div>
+                      </a>
+                    <a mat-list-item *ngFor="let data of data1">
+                      <div class="row rowWidth">
+                        <div class="col recentFirst">
+                            {{data.col1}}
+                        </div>
+                        <div class="col recentFirst">
+                          {{data.col2}}
+                        </div>
+                        <div class="col recentThird text-muted text-right padding_margin_zero">
+                            <mat-progress-bar mode="determinate" value="{{data.col3}}" color="{{data.color}}"></mat-progress-bar>
+                        </div>
+                      </div>
+                    </a>
+                  </mat-nav-list>
+                  <div class="text-center">
+                    <button mat-flat-button style="width: 100%">View all</button>
+                  </div>
+    
+                </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col">
+            <mat-card>
+              <mat-card-content></mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col">
+              <mat-card>
+                  <mat-card-content></mat-card-content>
+                </mat-card>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>
