@@ -5,9 +5,7 @@
     margin: 20px;
 }
 
-.text-muted {
-    color: rgba(0,0,0,.54)!important;
-}
+
 .label1{
     font-size: 14px;
 }
@@ -48,9 +46,26 @@
 .recentThird{
     font-size:12px
 }
-.text-center{
-    text-align: center;
-}
+
 table {
     width: 100%;
   }
+  .example-fill-remaining-space {
+    flex: 1 1 auto;
+  }
+  .mat-grid-tile .mat-figure {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.grid_1_4{
+    background-color: lightgray;
+}

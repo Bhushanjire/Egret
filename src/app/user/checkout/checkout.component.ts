@@ -27,7 +27,17 @@ export class CheckoutComponent implements OnInit {
       'bcomp_name': new FormControl(null, Validators.required),
       'baddrline2': new FormControl(null, Validators.required),
       'bzip': new FormControl(null, Validators.required),
-      'bemail': new FormControl(null, Validators.required)
+      'bemail': new FormControl(null, Validators.required),
+      'scountry': new FormControl(null),
+      'slast_name': new FormControl(null),
+      'saddrline1': new FormControl(null),
+      'scity': new FormControl(null),
+      'sphone': new FormControl(null),
+      'sfirst_name': new FormControl(null),
+      'scomp_name': new FormControl(null),
+      'saddrline2': new FormControl(null),
+      'szip': new FormControl(null),
+      'semail': new FormControl(null)
     });
   }
 Country = ['India','England','America'];

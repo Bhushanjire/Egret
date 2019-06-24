@@ -3,8 +3,8 @@
     <div class="container-fluid">
       <div class="row" style="margin-top : 10px">
         <div class="col-sm-8">
-            <img src="/assets/images/logo-lg.png" style="width: 15px;cursor: pointer;">
-            &nbsp;<span style="font-size:2ch;font-weight: 500">EGRET</span>
+          <img src="/assets/images/logo-lg.png" style="width: 15px;cursor: pointer;">
+          &nbsp;<span style="font-size:2ch;font-weight: 500">EGRET</span>
         </div>
         <div class="col-sm-4 text-right">
           <mat-slide-toggle></mat-slide-toggle>
@@ -18,13 +18,22 @@
           <img src="/assets/images/setting.svg" mat-button [matMenuTriggerFor]="menu"
             style="width: 15px;cursor: pointer;">
           <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/profile"><mat-icon>account_box</mat-icon>Profile</button>
-            <button mat-menu-item routerLink="/setting"><mat-icon>settings</mat-icon>Account Setting</button>
-            <button mat-menu-item routerLink="/calendar"><mat-icon>date_range</mat-icon>Calender </button>
-            <button mat-menu-item (click)="signout()" ><mat-icon>exit_to_app</mat-icon>Sign Out</button>
+            <button mat-menu-item routerLink="/profile">
+              <mat-icon>account_box</mat-icon>Profile
+            </button>
+            <button mat-menu-item routerLink="/setting">
+              <mat-icon>settings</mat-icon>Account Setting
+            </button>
+            <button mat-menu-item routerLink="/calendar">
+              <mat-icon>date_range</mat-icon>Calender
+            </button>
+            <button mat-menu-item (click)="signout()">
+              <mat-icon>exit_to_app</mat-icon>Sign Out
+            </button>
           </mat-menu>&nbsp;
           <img src="/assets/images/email.svg" style="width: 15px;cursor: pointer;" matTooltip="Inbox">&nbsp;
-          <img src="/assets/images/logout.svg" style="width: 15px;cursor: pointer;" matTooltip="Sign Out" (click)="signout()">
+          <img src="/assets/images/logout.svg" style="width: 15px;cursor: pointer;" matTooltip="Sign Out"
+            (click)="signout()">
         </div>
       </div>
       <mat-divider class="matDivider"></mat-divider>
@@ -68,6 +77,12 @@
             </mat-list>
           </mat-expansion-panel>
         </mat-accordion>
+        <mat-nav-list class="cusrsor">
+          <a mat-list-item routerLink='/user/curdtable'>
+            <mat-icon>format_list_bulleted</mat-icon>&nbsp;CURD Table
+          </a>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
         <mat-accordion>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>

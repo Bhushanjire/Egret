@@ -12,6 +12,7 @@ import { ProductdetailComponent } from './productdetail/productdetail.component'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DefaultComponent } from './default/default.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { CurdTableComponent } from './curd-table/curd-table.component';
 
 const Userroutes: Routes = [
   {
@@ -28,6 +29,7 @@ const Userroutes: Routes = [
     {path : 'productdetail',component:ProductdetailComponent},
     {path : 'default',component:DefaultComponent},
     {path : 'analytics',component:AnalyticsComponent},
+    {path : 'curdtable',component:CurdTableComponent},
     {path : '',
     redirectTo:'productlist',
   pathMatch:'full'},

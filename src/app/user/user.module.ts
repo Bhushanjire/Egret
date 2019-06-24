@@ -19,12 +19,9 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
 import * as highcharts from 'highcharts';
-import { ChartModule } from 'angular-highcharts';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-
-
-
-
-
+import { ChartModule } from 'angular-highcharts';
+import { CurdTableComponent } from './curd-table/curd-table.component';
+import { AddMemberComponent } from './curd-table/add-member/add-member.component';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
 @NgModule({
   declarations: [
@@ -40,7 +37,9 @@ import { ChartModule } from 'angular-highcharts';
     ProductdetailComponent,
     SearchPipe,
     DefaultComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    CurdTableComponent,
+    AddMemberComponent
   ],
   imports: [
     SharedModule,
@@ -63,6 +62,9 @@ import { ChartModule } from 'angular-highcharts';
     SearchPipe,
     DefaultComponent,
     AnalyticsComponent
-  ]
+  ],
+  entryComponents: [
+    AddMemberComponent
+  ],
 })
 export class UserModule { }

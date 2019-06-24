@@ -17,7 +17,7 @@ export class ProductlistComponent implements OnInit {
   hideCategory: boolean = true;
   productlistdata: any;
   productlistdatasearch: any;
-  colsm: number = 10;
+  colsm: number = 9;
   horizontalProduct: boolean = false;
   verticalProduct: boolean = true;
   postData: any;
@@ -81,7 +81,7 @@ export class ProductlistComponent implements OnInit {
   hideshowCat() {
     this.hideCategory = !this.hideCategory;
     if (this.hideCategory)
-      this.colsm = 10;
+      this.colsm = 9;
     else
       this.colsm = 12;
   }

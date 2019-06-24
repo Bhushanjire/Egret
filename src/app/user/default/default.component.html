@@ -113,9 +113,58 @@
       </mat-card>
     </div>
   </div>
-  <br>
+  
+  <div class="mb-3"></div>
   <div class="row">
     <div class="col-lg-4">
+        <div class="row">
+            <div class="col-md-12">
+      <mat-card>
+        <mat-card-content>
+            <div class="row">
+                <div class="col-md-6">
+                    <div [chart] ="spacechart" style="width: 100px;height: 100px;" class="grid_1_4"> </div>
+                    Space: 200/500 GB
+                </div>
+                <div class="col-md-6">
+                    <div [chart] ="taskchart" style="width: 100px;height: 100px;"> </div>
+                    Tasks: 8/12 
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div [chart] ="ticketschart" style="width: 100px;height: 100px;"> </div>
+                      Tickets: 15/40
+                  </div>
+                  <div class="col-md-6">
+                      <div [chart] ="stockchart" style="width: 100px;height: 100px;"> </div>
+                      Stock: 1600/2000
+                  </div>
+                </div>
+        </mat-card-content>
+      </mat-card>
+      </div>
+        </div>
+
+
+
+        <!-- <div class="row">
+            <div class="col-md-12">
+              <mat-card>
+                <mat-card-content>
+                    <mat-grid-list cols="2" rowHeight="2:1">
+                        <mat-grid-tile  class="grid_1_4">
+                            <div [chart] ="spacechart" style="width: 100px;height: 100px;"> </div>
+                        </mat-grid-tile>
+                        <mat-grid-tile>Tasks: 8/12</mat-grid-tile>
+                        <mat-grid-tile></mat-grid-tile>
+                        <mat-grid-tile class="grid_1_4">Stock: 1600/2000</mat-grid-tile>
+                      </mat-grid-list>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div> -->
+          <div class="mb-3"></div>
       <div class="row">
         <div class="col">
           <mat-card>
@@ -125,7 +174,7 @@
                   <div class="row">
                     <div class="col-sm-10 padding_margin_zero">Top Campaign Performance
                     </div>
-                    <div class="col-sm-2 pull-right padding_margin_zero">
+                    <div class="col-sm-2 pull-right">
                       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>more_vert</mat-icon>
                       </button>
@@ -147,17 +196,54 @@
                   </div>
                 </mat-list-item>
                 <mat-divider></mat-divider>
-                <mat-list-item *ngFor = "let data of topCompaign" class="text-muted recentFirst">
+                <mat-list-item *ngFor="let data of topCompaign" class="text-muted recentFirst">
                   <div>{{data.name}}</div>
                   <mat-progress-bar mode="determinate" value="{{data.value}}" color="{{data.color}}"></mat-progress-bar>
-                  
+
                 </mat-list-item>
               </mat-list>
-             
+
             </mat-card-content>
           </mat-card>
         </div>
       </div>
+      <div class="mb-3"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card>
+            <mat-card-content>
+                <mat-grid-list cols="3" rowHeight="2:2">
+                    <mat-grid-tile>
+                        <img src="/assets/images/img1.jpeg">
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                          </button>
+                          <mat-menu #menu="matMenu">
+                            <button mat-menu-item>
+                              <span>Follow</span>
+                            </button>
+                            <button mat-menu-item>
+                              <span>Message</span>
+                            </button>
+                            <button mat-menu-item>
+                              <span>Block</span>
+                            </button>
+                            <button mat-menu-item>
+                              <span>Delete</span>
+                            </button>
+                          </mat-menu>
+                    </mat-grid-tile>
+                    <mat-grid-tile><img src="/assets/images/img2.jpeg"></mat-grid-tile>
+                    <mat-grid-tile><img src="/assets/images/img3.jpeg"></mat-grid-tile>
+                    <mat-grid-tile><img src="/assets/images/img4.jpeg"></mat-grid-tile>
+                    <mat-grid-tile><img src="/assets/images/img5.jpeg"></mat-grid-tile>
+                    <mat-grid-tile><img src="/assets/images/img6.jpeg"></mat-grid-tile>
+                  </mat-grid-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+
     </div>
     <div class="col-lg-8">
       <div class="row">
@@ -198,56 +284,142 @@
       <div class="row">
         <div class="col">
           <mat-card>
-              <mat-card-content>
-                  <mat-nav-list>
-                      <a mat-list-item>
-                          <div class="row rowWidth">
-                              <div class="col recentFirst">
-                                  Sprints
-                              </div>
-                              <div class="col recentFirst">
-                                Manager
-                              </div>
-                              <div class="col recentThird  padding_margin_zero">
-                                Progress
-                              </div>
-                            </div>
-                      </a>
-                    <a mat-list-item *ngFor="let data of data1">
-                      <div class="row rowWidth">
-                        <div class="col recentFirst">
-                            {{data.col1}}
-                        </div>
-                        <div class="col recentFirst">
-                          {{data.col2}}
-                        </div>
-                        <div class="col recentThird text-muted text-right padding_margin_zero">
-                            <mat-progress-bar mode="determinate" value="{{data.col3}}" color="{{data.color}}"></mat-progress-bar>
-                        </div>
-                      </div>
-                    </a>
-                  </mat-nav-list>
-                  <div class="text-center">
-                    <button mat-flat-button style="width: 100%">View all</button>
+            <mat-card-content>
+              <mat-nav-list>
+                <a mat-list-item>
+                  <div class="row rowWidth">
+                    <div class="col recentFirst text-muted">
+                      Sprints
+                    </div>
+                    <div class="col recentFirst text-muted">
+                      Manager
+                    </div>
+                    <div class="col recentThird  padding_margin_zero text-muted">
+                      Progress
+                    </div>
                   </div>
-    
-                </mat-card-content>
+                </a>
+                <mat-divider></mat-divider>
+                <a mat-list-item *ngFor="let data of data1">
+                  <div class="row rowWidth">
+                    <div class="col recentFirst">
+                      {{data.col1}}
+                    </div>
+                    <div class="col recentFirst">
+                      {{data.col2}}
+                    </div>
+                    <div class="col recentThird text-muted text-right padding_margin_zero">
+                      <mat-progress-bar mode="determinate" value="{{data.col3}}" color="{{data.color}}">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </a>
+              </mat-nav-list>
+              <div class="text-center">
+                <button mat-flat-button style="width: 100%">View all</button>
+              </div>
+
+            </mat-card-content>
           </mat-card>
         </div>
       </div>
       <br>
       <div class="row">
-          <div class="col">
-            <mat-card>
-              <mat-card-content></mat-card-content>
-            </mat-card>
-          </div>
-          <div class="col">
-              <mat-card>
-                  <mat-card-content></mat-card-content>
-                </mat-card>
-          </div>
+        <div class="col">
+          <mat-card>
+            <mat-card-content>
+              <mat-toolbar color="primary">
+                <span>
+                  <img src="/assets/images/profile.jpeg" mat-button [matMenuTriggerFor]="menu" class="rounded-circle"
+                    style="width: 60px;height: 50px;cursor: pointer;">
+                  &nbsp;
+                  <span class="recentSecond">Snow Benton</span>
+                </span>
+                <span class="example-fill-remaining-space"></span>
+                <span><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <span>Follow</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Message</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Block</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
+                </span>
+              </mat-toolbar>
+              <mat-list>
+                <mat-list-item>
+                  <mat-icon matListIcon>card_membership</mat-icon>
+                  Paid Member
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-icon matListIcon>date_range</mat-icon>
+                  Member since Jan 1, 2019
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-icon matListIcon>location_on</mat-icon>
+                  329 Dictum Court, Minnesota
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
         </div>
+        <div class="col">
+          <mat-card>
+            <mat-card-content>
+              <mat-toolbar color="primary">
+                <span>
+                  <img src="/assets/images/profile.jpeg" mat-button [matMenuTriggerFor]="menu" class="rounded-circle"
+                    style="width: 60px;height: 50px;cursor: pointer;">
+                  &nbsp;
+                  <span class="recentSecond">Kay Sellers</span>
+                </span>
+                <span class="example-fill-remaining-space"></span>
+                <span><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                      <span>Follow</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Message</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Block</span>
+                    </button>
+                    <button mat-menu-item>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
+                </span>
+              </mat-toolbar>
+              <mat-list>
+                <mat-list-item>
+                  <mat-icon matListIcon>card_membership</mat-icon>
+                  Paid Member
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-icon matListIcon>date_range</mat-icon>
+                  Member since Feb 16, 2017
+                </mat-list-item>
+                <mat-list-item>
+                  <mat-icon matListIcon>location_on</mat-icon>
+                  893 Garden Place, American Samoa
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
 
     </div>
   </div>

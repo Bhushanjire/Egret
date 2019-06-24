@@ -1,0 +1,42 @@
+<form (ngSubmit)='memberAddUpdate(memberForm)' [formGroup]="memberForm">
+  <h2 mat-dialog-title>Add new member</h2>
+  <mat-dialog-content>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="example-container">
+
+          <mat-form-field>
+            <input matInput placeholder="Name" formControlName="name">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Phone" formControlName="phone">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Balance" formControlName="balance">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Age" formControlName="age">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Company" formControlName="company">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="address" formControlName="address">
+          </mat-form-field>
+          <mat-slide-toggle formControlName="status">Active Customer</mat-slide-toggle>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      <button mat-raised-button color="primary" [disabled]="memberForm.invalid">Save</button>
+      <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

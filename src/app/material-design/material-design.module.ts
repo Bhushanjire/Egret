@@ -28,6 +28,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -65,7 +67,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTooltipModule,
     MatChipsModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
   ],
   exports:[
     CommonModule,
@@ -95,7 +98,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatTooltipModule,
     MatChipsModule,
     MatTabsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDialogModule
   ]
 })
 export class MaterialDesignModule { }
