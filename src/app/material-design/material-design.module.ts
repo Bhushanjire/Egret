@@ -29,6 +29,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSortModule} from '@angular/material/sort';
+
 
 
 
@@ -68,7 +70,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatChipsModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ],
   exports:[
     CommonModule,
@@ -99,7 +102,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatChipsModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSortModule
   ]
 })
 export class MaterialDesignModule { }

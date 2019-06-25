@@ -21,7 +21,8 @@ import { ChartsModule } from 'ng2-charts';
 import * as highcharts from 'highcharts';
 import { ChartModule } from 'angular-highcharts';
 import { CurdTableComponent } from './curd-table/curd-table.component';
-import { AddMemberComponent } from './curd-table/add-member/add-member.component';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+import { AddMemberComponent } from './add-member/add-member.component';
+import { ConfirmBoxComponent } from './confirm-box/confirm-box.component';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AddMemberComponent } from './curd-table/add-member/add-member.component
     DefaultComponent,
     AnalyticsComponent,
     CurdTableComponent,
-    AddMemberComponent
+    AddMemberComponent,
+    ConfirmBoxComponent
   ],
   imports: [
     SharedModule,
@@ -64,7 +66,8 @@ import { AddMemberComponent } from './curd-table/add-member/add-member.component
     AnalyticsComponent
   ],
   entryComponents: [
-    AddMemberComponent
+    AddMemberComponent,
+    ConfirmBoxComponent
   ],
 })
 export class UserModule { }

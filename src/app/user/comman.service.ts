@@ -57,6 +57,18 @@ export class CommanService {
   public signinSer(data){
     return this.httpClient.post('http://localhost/bhAPI/signin.php',data).pipe(map((res:any)=>res));
   }
+  public addMember(data){
+    return this.httpClient.post('http://localhost/bhAPI/add_customer.php',data).pipe(map((res:any)=>res));
+  }
+  public customerList(data){
+    return this.httpClient.post('http://localhost/bhAPI/customerList.php',data).pipe(map((res:any)=>res));
+  }
+  public updateCustomer(data){
+    return this.httpClient.post('http://localhost/bhAPI/update_customer.php',data).pipe(map((res:any)=>res));
+  }
+  public deleteCustomer(data){
+    return this.httpClient.post('http://localhost/bhAPI/delete_customer.php',data).pipe(map((res:any)=>res));
+  }
 
   
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }
