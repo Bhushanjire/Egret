@@ -14,16 +14,13 @@
         </mat-form-field>
       </div>
     </div>
-    <div class="row">
+
+
+   <div class="row">
       <div class="col-sm-12 w-100">
-          <quill-editor [(ngModel)]="editorContent"
-          [options]="editorOptions"
-          (blur)="onEditorBlured($event)"
-          (focus)="onEditorFocused($event)"
-          (ready)="onEditorCreated($event)"
-          (change)="onContentChanged($event)"></quill-editor>
+          <quill-editor></quill-editor>
       </div>
-    </div>
+    </div> 
 
     <div class="row">
       <div class="col-md-6">

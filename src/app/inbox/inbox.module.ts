@@ -9,7 +9,9 @@ import { InboxLeftSideComponent } from './inbox-left-side/inbox-left-side.compon
 import { InboxRightSideComponent } from './inbox-right-side/inbox-right-side.component';
 import { InboxHeaderComponent } from './inbox-header/inbox-header.component';
 import { ComposeModelComponent } from './compose-model/compose-model.component';
-import { QuillEditorModule } from 'ngx-quill-editor';
+import { QuillModule } from 'ngx-quill'
+
+
 
 
 
@@ -25,7 +27,7 @@ import { QuillEditorModule } from 'ngx-quill-editor';
     CommonModule,
     InboxRoutingModule,
     SharedModule,
-   QuillEditorModule
+    QuillModule
   ],
   exports: [
     InboxComponent
