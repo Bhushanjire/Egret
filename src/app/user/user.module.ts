@@ -22,7 +22,9 @@ import * as highcharts from 'highcharts';
 import { ChartModule } from 'angular-highcharts';
 import { CurdTableComponent } from './curd-table/curd-table.component';
 import { AddMemberComponent } from './add-member/add-member.component';
-import { ConfirmBoxComponent } from './confirm-box/confirm-box.component';                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+import { ConfirmBoxComponent } from './confirm-box/confirm-box.component';
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
 @NgModule({
   declarations: [
@@ -41,7 +43,7 @@ import { ConfirmBoxComponent } from './confirm-box/confirm-box.component';
     AnalyticsComponent,
     CurdTableComponent,
     AddMemberComponent,
-    ConfirmBoxComponent
+    ConfirmBoxComponent,
   ],
   imports: [
     SharedModule,

@@ -5,38 +5,48 @@
       <div class="col-md-6">
         <div class="example-container">
           <mat-form-field>
-            <input matInput placeholder="Name" formControlName="cust_name">
-            <input hidden matInput  formControlName="cust_id">
+            <input matInput placeholder="Name" name="cust_name" id="cust_name" formControlName="cust_name"  required>
+            <!-- <div *ngIf="memberForm?.controls.cust_name?.errors?.required">Please enter name</div> -->
+            <mat-error>
+              <span *ngIf="memberForm?.controls.cust_name?.dirty && memberForm?.controls.cust_name?.touched">
+                <span *ngIf="memberForm?.controls.cust_name?.errors?.required">Please enter name</span>
+              </span>
+                <!-- <span *ngIf="myForm?.controls.user_input?.errors?.minLength">Minimum Length is 5</span> -->
+            </mat-error>
+            <input hidden matInput name="cust_id" formControlName="cust_id">
+            
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Email" formControlName="cust_email">
+            <input matInput placeholder="Email" name="cust_email" formControlName="cust_email">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Phone" formControlName="cust_phone">
+            <input matInput placeholder="Phone" name="cust_phone" formControlName="cust_phone">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Balance" formControlName="cust_balance">
+            <input matInput placeholder="Balance" name="cust_balance"  formControlName="cust_balance">
           </mat-form-field>
         </div>
       </div>
       <div class="col-md-6">
         <div class="example-container">
           <mat-form-field>
-            <input matInput placeholder="Age" formControlName="cust_age">
+            <input matInput placeholder="Age" name="cust_age" formControlName="cust_age">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Company" formControlName="cust_company">
+            <input matInput placeholder="Company" name="cust_company" formControlName="cust_company">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="address" formControlName="cust_address">
+            <input matInput placeholder="address" name="cust_address" formControlName="cust_address">
           </mat-form-field>
-          <mat-slide-toggle formControlName="cust_status" value="Active">Active Customer</mat-slide-toggle>
+          {{element | json}}
+          <mat-slide-toggle formControlName="cust_status" name="cust_status" checked="element.cust_status">Active Customer
+          </mat-slide-toggle>
         </div>
       </div>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-      <button mat-raised-button color="primary" [disabled]="memberForm.invalid">Save</button>
-      <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [disabled]="memberForm.invalid">Save</button>
+    <button mat-button mat-dialog-close style="color: red">Cancel</button>
   </mat-dialog-actions>
 </form>

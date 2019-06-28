@@ -7,7 +7,7 @@ import { CommanService } from '../comman.service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
 import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
+
 
 
 export interface userData {
@@ -105,16 +105,19 @@ deleteCustomer(cust_id) {
     });
   }
 
-  confirmBox(cust_id){
+  confirmBox(custData){
     const deletedialogRef = this.dialog.open(ConfirmBoxComponent, {
       width: '400px',
       height : '200px',
-      data: {cust_id : cust_id}
+      data: {
+        cust_id : custData.cust_id,
+        cust_name : custData.cust_name
+      }
     });
   
     deletedialogRef.afterClosed().subscribe(result => {
       if(result=='ok'){
-        this.deleteCustomer(cust_id);
+        this.deleteCustomer(custData.cust_id);
        this.customerList();
       }
        

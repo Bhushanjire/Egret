@@ -16,26 +16,32 @@ import { CurdTableComponent } from './curd-table/curd-table.component';
 
 const Userroutes: Routes = [
   {
-    path : '',
-    component:DashboardComponent,
-    children:[
-    
-    {path : 'profile',component:ProfileComponent},
-    {path : 'setting',component:SettingComponent},
-    {path : 'calendar',component:CalendarComponent},
-    {path : 'productlist',component:ProductlistComponent},
-    {path : 'cart',component:CartComponent},
-    {path : 'checkout',component:CheckoutComponent},
-    {path : 'productdetail',component:ProductdetailComponent},
-    {path : 'default',component:DefaultComponent},
-    {path : 'analytics',component:AnalyticsComponent},
-    {path : 'curdtable',component:CurdTableComponent},
-    {path : '',
-    redirectTo:'productlist',
-  pathMatch:'full'},
-  ]
+    path: '',
+    component: DashboardComponent,
+    children: [
+
+      { path: 'profile', component: ProfileComponent },
+      { path: 'setting', component: SettingComponent },
+      { path: 'calendar', component: CalendarComponent },
+      { path: 'productlist', component: ProductlistComponent },
+      { path: 'cart', component: CartComponent },
+      { path: 'checkout', component: CheckoutComponent },
+      { path: 'productdetail', component: ProductdetailComponent },
+      { path: 'default', component: DefaultComponent },
+      { path: 'analytics', component: AnalyticsComponent },
+      { path: 'curdtable', component: CurdTableComponent },
+      {
+        path: '',
+        redirectTo: 'productlist',
+        pathMatch: 'full'
+      },
+      {
+        path: 'inbox',
+        loadChildren: () => import('../inbox/inbox.module').then(mod => mod.InboxModule)
+      },
+    ]
   },
-  
+
 ];
 
 @NgModule({

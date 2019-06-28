@@ -8,41 +8,50 @@
 <div class="mb-3"></div>
 <div class="row">
     <div class="col-md-12">
-        <button mat-raised-button color="primary" (click)="openAddEditMember()">Add Member</button>  
+        <button mat-raised-button class="btn-color-blue" (click)="openAddEditMember()">
+          <span class="text-whight">Add Member</span> </button>  
     </div>
   </div>
   <div class="mb-3"></div>
 <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- matSortDisabled => To disabled the sorting -->
+  <!-- matSortActive="cust_name" =>initial sorting start from cust name  -->
+  <!-- matSortDirection="asc" = >initial sorting direction asc or dec -->
+    <table mat-table [dataSource]="dataSource" matSort  matSortActive="cust_name" matSortDirection="asc" matSortDisableClear  class="mat-elevation-z8">
   
       <!-- Name Column -->
       <ng-container matColumnDef="cust_name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="cust_name"> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.cust_name}} </td>
       </ng-container>
   
       <!-- Age Column -->
       <ng-container matColumnDef="cust_age">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="cust_age"> Age </th>
         <td mat-cell *matCellDef="let element"> {{element.cust_age}} </td>
       </ng-container>
   
       <!-- Balance Column -->
       <ng-container matColumnDef="cust_balance">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Balance </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="cust_balance"> Balance </th>
         <td mat-cell *matCellDef="let element"> {{element.cust_balance}} </td>
       </ng-container>
   
       <!-- Company Column -->
       <ng-container matColumnDef="cust_company">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Company </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header="cust_company"> Company </th>
         <td mat-cell *matCellDef="let element"> {{element.cust_company}} </td>
       </ng-container>
 
       <!-- Status Column -->
       <ng-container matColumnDef="cust_status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-          <td mat-cell *matCellDef="let element"> {{element.cust_status}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header="cust_status"> Status </th>
+          <td mat-cell *matCellDef="let element">
+              <mat-chip-list> 
+                <!-- <mat-chip  [ngClass]="{'btn-color-blue':element.cust_status == 'Active'}">{{element.cust_status}}</mat-chip> -->
+                <mat-chip  [ngStyle]="{'background-color':element.cust_status == 'Active' ? '#2196f3' : '' }">{{element.cust_status}}</mat-chip>
+ 
+              </mat-chip-list>
         </ng-container>
 
         <!-- Action Column -->
@@ -50,7 +59,7 @@
             <th mat-header-cell *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element">
               <mat-icon class="text-blue handCursor" (click)="openAddEditMember(element)">edit</mat-icon>&nbsp;
-              <mat-icon class="text-red handCursor" (click)="confirmBox(element.cust_id)">delete</mat-icon>
+              <mat-icon class="text-red handCursor" (click)="confirmBox(element)">delete</mat-icon>
             </td>
           </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

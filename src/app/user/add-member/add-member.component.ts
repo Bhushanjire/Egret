@@ -54,10 +54,13 @@ export class AddMemberComponent implements OnInit {
       "cust_age":this.data.cust_age,  
       "cust_company":this.data.cust_company,  
       "cust_address":this.data.cust_address,  
-      "cust_status":this.data.cust_status, 
+      "cust_status":this.data.cust_status == 'Active' ? true : false, 
       "cust_id":this.data.cust_id,   
       }); 
     }
+
+    console.log(this.memberForm);
+    
   }
 
   memberAddUpdate(data) {
