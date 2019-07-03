@@ -1,0 +1,71 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel (opened)="panel(mailData,panelOpenState = true)"
+    (closed)="panel(mailData,panelOpenState = false)" id="expansion_{{mailData.mail_id}}" hideToggle
+      *ngFor="let mailData of emailList">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span *ngIf="mailData?.expanded">
+              <img src="/assets/images/profile.jpeg" mat-button [matMenuTriggerFor]="menu" class="rounded-circle" style="width: 50px;cursor: pointer;">
+              {{mailData.title}}<br>
+              <span class="text-muted text-size-12 ml-5">25 Jan 2019</span> 
+          </span>
+          <span *ngIf="!mailData?.expanded">
+
+            <mat-checkbox class="mr-3" name="chkbx_{{mailData.mail_id}}" id="chkbx_{{mailData.mail_id}}"
+             value="{{mailData.mail_id}}"  (click)="$event.stopPropagation();" [checked]=checktoggle></mat-checkbox>
+          </span> 
+          <span class="mr-3" *ngIf="!mailData?.expanded">
+            <mat-icon matTooltip="Mark as important" (click)="markAsImp($event,mailData)" [ngClass]="{'text-yellow':mailData.markAsImp}">star_border</mat-icon>
+          </span>
+          <span *ngIf="!mailData?.expanded">{{mailData.title}}</span>
+        </mat-panel-title>
+        <mat-panel-description style="text-align: right">
+          {{mailData.description}}
+          <span class="ml-3">{{mailData.time}}</span>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+            (click)="$event.stopPropagation();">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>reply</mat-icon>
+              <span>Reply</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>archive</mat-icon>
+              <span>Archive</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="mat-expansion-panel-body">
+        <div _ngcontent-vpy-c25="" class="message-text">
+          <p>Natus consequuntur perspiciatis esse beatae illo quos eaque.</p>
+          <p>Earum, quisquam, fugit? Numquam dolor magni nisi? Suscipit odit, ipsam iusto enim culpa,
+            temporibus vero possimus error voluptates sequi. Iusto ipsam, nihil? Eveniet modi maxime animi excepturi a
+            dignissimos doloribus,
+            inventore sed ratione, ducimus atque earum maiores tenetur officia commodi dicta tempora consequatur non
+            nesciunt ipsam,
+            consequuntur quia fuga aspernatur impedit et? Natus, earum.</p>
+          <blockquote>
+            Earum, quisquam, fugit? Numquam dolor magni nisi? Suscipit odit, ipsam iusto enim culpa,
+            temporibus vero possimus error voluptates sequi.
+          </blockquote>
+          <p>Earum, quisquam, fugit? Numquam dolor magni nisi? Suscipit odit, ipsam iusto enim culpa,
+            temporibus vero possimus error voluptates sequi. Iusto ipsam, nihil? Eveniet modi maxime animi excepturi a
+            dignissimos doloribus,
+            inventore sed ratione, ducimus atque earum maiores tenetur officia commodi dicta tempora consequatur non
+            nesciunt ipsam,
+            consequuntur quia fuga aspernatur impedit et? Natus, earum.</p><br>
+          Thanks<br>
+          Jhone
+        </div>
+       
+      </div>
+    
+    </mat-expansion-panel>
+  </mat-accordion>

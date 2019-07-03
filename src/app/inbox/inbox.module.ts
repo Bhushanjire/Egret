@@ -9,7 +9,8 @@ import { InboxLeftSideComponent } from './inbox-left-side/inbox-left-side.compon
 import { InboxRightSideComponent } from './inbox-right-side/inbox-right-side.component';
 import { InboxHeaderComponent } from './inbox-header/inbox-header.component';
 import { ComposeModelComponent } from './compose-model/compose-model.component';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { MailComponent } from './mail/mail.component'
 
 
 
@@ -21,7 +22,8 @@ import { QuillModule } from 'ngx-quill'
     InboxLeftSideComponent,
     InboxRightSideComponent,
     InboxHeaderComponent,
-    ComposeModelComponent
+    ComposeModelComponent,
+    MailComponent
   ],
   imports: [
     CommonModule,

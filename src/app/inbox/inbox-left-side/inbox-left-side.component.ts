@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComposeModelComponent } from '../compose-model/compose-model.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 
 
 
@@ -17,9 +17,16 @@ export class InboxLeftSideComponent implements OnInit {
   }
 
   openComposeMail(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.position = {
+      left : '150px',
+
+  };
     const composeDialogRef = this.dialog.open(ComposeModelComponent, {
       width: '100%',
-      height: '600px',
+      height: '500px',
+     
+    
       data: {}
     });
 

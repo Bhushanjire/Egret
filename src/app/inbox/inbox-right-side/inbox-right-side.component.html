@@ -1,4 +1,5 @@
 <mat-card>
+  <!-- <app-mail [emailList]="emailList"></app-mail> -->
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel (opened)="panel(mailData,panelOpenState = true)"
     (closed)="panel(mailData,panelOpenState = false)" id="expansion_{{mailData.mail_id}}" hideToggle
@@ -12,11 +13,11 @@
           </span>
           <span *ngIf="!mailData?.expanded">
 
-            <mat-checkbox class="mr-3" name="chkbx_{{mailData.mail_id}}" id="chkbx_{{mailData.mail_id}}"
-             value="{{mailData.mail_id}}"  (click)="$event.stopPropagation();" [checked]=checktoggle></mat-checkbox>
+            <mat-checkbox class="mr-3" name="chkbx" id="chkbx_{{mailData.mail_id}}"
+             value="{{mailData.mail_id}}" #checkboxRef (click)="checkUncheck($event,mailData,checkboxRef)" [checked]=mailData.chkbx ></mat-checkbox>
           </span> 
           <span class="mr-3" *ngIf="!mailData?.expanded">
-            <mat-icon matTooltip="Mark as important" (click)="$event.stopPropagation();">star_border</mat-icon>
+            <mat-icon matTooltip="Mark as important" (click)="markAsImp($event,mailData)" [ngClass]="{'text-yellow':mailData.markAsImp}">star_border</mat-icon>
           </span>
           <span *ngIf="!mailData?.expanded">{{mailData.title}}</span>
         </mat-panel-title>
