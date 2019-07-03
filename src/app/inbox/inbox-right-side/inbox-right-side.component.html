@@ -13,8 +13,8 @@
           </span>
           <span *ngIf="!mailData?.expanded">
 
-            <mat-checkbox class="mr-3" name="chkbx" id="chkbx_{{mailData.mail_id}}"
-             value="{{mailData.mail_id}}" #checkboxRef (click)="checkUncheck($event,mailData,checkboxRef)" [checked]=mailData.chkbx ></mat-checkbox>
+            <mat-checkbox class="mr-3" name="chkbx" id="chkbx_{{mailData?.mail_id}}"
+             value="mailData.mail_id" (click)="checkUncheck($event,mailData)"  [checked]=checktoggle></mat-checkbox>
           </span> 
           <span class="mr-3" *ngIf="!mailData?.expanded">
             <mat-icon matTooltip="Mark as important" (click)="markAsImp($event,mailData)" [ngClass]="{'text-yellow':mailData.markAsImp}">star_border</mat-icon>

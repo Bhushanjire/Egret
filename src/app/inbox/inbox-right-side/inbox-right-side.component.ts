@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ConnectedPositionStrategy } from '@angular/cdk/overlay';
 
+
+
 @Component({
   selector: 'app-inbox-right-side',
   templateUrl: './inbox-right-side.component.html',
@@ -12,6 +14,8 @@ export class InboxRightSideComponent implements OnInit {
   panelOpenState = false; 
   starColor =false;
   chkValue : any;
+  tempArray:any;
+  checkEmailLength : number;
   
  
   constructor() { }
@@ -60,6 +64,7 @@ seletAll(event){
      // console.log("data",element);
       
     });
+    this.checktoggle =true;
    // this.checktoggle=true;
   }else{
     this.emailList.forEach(element => {
@@ -67,8 +72,10 @@ seletAll(event){
       //console.log("data",element);
       
     });
-    
+    this.checktoggle=false;
   }
+  console.log(this.emailList);
+  
 
 }
 
@@ -86,26 +93,28 @@ markAsImp(event : any,mailData : any){
 }
 
 deleteSelected(){
+  console.log(this.emailList);
+  
   this.emailList.forEach((element,index) => {
     if(element.chkbx==true){
       this.emailList.splice(index,1);
-      console.log(index);
-      
-    }
-    console.log("data",element);
-    
+      console.log(element);
+    } 
   });
-  
+  console.log(this.emailList);
 }
 
-checkUncheck(event,mailData,checkUncheck){
-  event.stopPropagation();
-  if(checkUncheck.checked){
-    mailData.chkbx=true;
-  }else{
+checkUncheck(event,mailData){
+  event.stopPropagation(); 
+  if(mailData.chkbx){
     mailData.chkbx=false;
+  }else{
+    mailData.chkbx=true;
   }
-  console.log(checkUncheck.checked);
+
+  this.tempArray = this.emailList.filter(
+    email => email.chkbx == true );
+    this.checkEmailLength =this.tempArray.length;
 }
 
 
