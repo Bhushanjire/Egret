@@ -1,5 +1,8 @@
 <mat-card>
   <!-- <app-mail [emailList]="emailList"></app-mail> -->
+  <!-- <div *ngFor="let data of composeData">
+    {{data.emailTo}}
+  </div> -->
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel (opened)="panel(mailData,panelOpenState = true)"
     (closed)="panel(mailData,panelOpenState = false)" id="expansion_{{mailData.mail_id}}" hideToggle

@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">Inbox</div>
+   
   </div>
   <div class="mb-3">
     
@@ -8,7 +9,7 @@
   <div class="row">
     <div class="col-md-3 text-size-12">
         
-      <app-inbox-left-side></app-inbox-left-side>
+      <app-inbox-left-side (composeEvent)="receiveCompose($event)"></app-inbox-left-side>
     </div>
     <div class="col-md-9">
         <app-inbox-header></app-inbox-header>

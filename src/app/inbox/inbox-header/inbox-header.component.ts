@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
   selector: 'app-inbox-header',
@@ -10,6 +10,8 @@ export class InboxHeaderComponent implements OnInit {
  mailLength = 0 ;
  headerBtnHideShow = false;
  checkAllBtn = false;
+
+ @Input() childMessage: string;
   constructor() { }
 
   ngOnInit() {

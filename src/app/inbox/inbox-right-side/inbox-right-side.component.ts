@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
-
-
+import { MailboxService } from "../mailbox.service";
 
 @Component({
   selector: 'app-inbox-right-side',
@@ -13,7 +11,7 @@ export class InboxRightSideComponent implements OnInit {
   checktoggle = false;
   panelOpenState = false;
   starColor = false;
-
+  composeData : any;
   chkValue: any;
   tempArray: any;
   mailLength: any;
@@ -22,12 +20,43 @@ export class InboxRightSideComponent implements OnInit {
   @Output() uncheckEvent = new EventEmitter<string>();
   selectAllVal: any;
   uncheckVal: any;
-  constructor() { }
+  emailList : Array<any>;
+  constructor(private data: MailboxService) { }
 
   ngOnInit() {
+   
+    
+    this.emailList = [
+      {
+        "mail_id": 1, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+      },
+      {
+        "mail_id": 2, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+      },
+      {
+        "mail_id": 3, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+      },
+      {
+        "mail_id": 4, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+      },
+      {
+        "mail_id": 5, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+      },
+      {
+        "mail_id": 6, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+      }
+    ];
+    this.data.currentMessage.subscribe((message) => {
+      console.log(message);
+      
+      // this.composeData = message
+      if(message){
 
+        this.emailList.push(message);
+      }
+    })
   }
-
+  
   step = 1;
 
   setStep(index: number) {
@@ -42,26 +71,7 @@ export class InboxRightSideComponent implements OnInit {
     this.step--;
   }
 
-  emailList = [
-    {
-      "mail_id": 1, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
-    },
-    {
-      "mail_id": 2, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
-    },
-    {
-      "mail_id": 3, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
-    },
-    {
-      "mail_id": 4, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
-    },
-    {
-      "mail_id": 5, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
-    },
-    {
-      "mail_id": 6, "chkbx": false, "markAsImp": false, "title": "Henrik Gevorg", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
-    }
-  ];
+  
   seletAll(event) {
     if (event.checked) {
       this.emailList.forEach(element => {
@@ -150,6 +160,7 @@ export class InboxRightSideComponent implements OnInit {
     console.log(this.emailList);
   }
 
+ 
 
 
 }

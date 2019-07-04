@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ComposeModelComponent implements OnInit {
   composeForm: FormGroup;
   mailAttachment : any;
+  postData :any;
 
   constructor(public compDialogRef: MatDialogRef<ComposeModelComponent>,private toastr: ToastrService) {
     compDialogRef.disableClose = true;
@@ -32,8 +33,25 @@ export class ComposeModelComponent implements OnInit {
     element.click();
   }
 
-  sendEmail(){
-   this.compDialogRef.close();
+  sendEmail(composeForm){
+    //console.log(composeForm.value);
+    this.postData=
+    // {
+    //   "emailTo" : composeForm.value.emailTo,
+    //   "emailSubject" : composeForm.value.emailSubject,
+    //   "emailBody" : composeForm.value.emailBody,
+    //   "attachment" : composeForm.value.attachment
+    // }
+    {
+      "mail_id": 7, "chkbx": false, "markAsImp": false, "title": "New Email", "description": "Welcome to Angular Egret", "time": "2 years ago", "body": "mail body content", "expanded": false
+    }
+  ;
+      
+
+    
+
+   this.compDialogRef.close(this.postData);
+
    this.toastr.success('Email sent successfully');
   }
   onFileChange(event : any){

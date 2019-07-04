@@ -10,7 +10,8 @@ import { InboxRightSideComponent } from './inbox-right-side/inbox-right-side.com
 import { InboxHeaderComponent } from './inbox-header/inbox-header.component';
 import { ComposeModelComponent } from './compose-model/compose-model.component';
 import { QuillModule } from 'ngx-quill';
-import { MailComponent } from './mail/mail.component'
+import { MailComponent } from './mail/mail.component';
+
 
 
 
@@ -29,7 +30,7 @@ import { MailComponent } from './mail/mail.component'
     CommonModule,
     InboxRoutingModule,
     SharedModule,
-    QuillModule
+    QuillModule,
   ],
   exports: [
     InboxComponent

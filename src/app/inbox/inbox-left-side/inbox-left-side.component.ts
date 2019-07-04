@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, EventEmitter } from '@angular/core';
 import { ComposeModelComponent } from '../compose-model/compose-model.component';
 import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 
@@ -12,7 +12,7 @@ import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
 export class InboxLeftSideComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
-
+  @Output() composeEvent = new EventEmitter<string>();
   ngOnInit() {
   }
 
@@ -32,7 +32,9 @@ export class InboxLeftSideComponent implements OnInit {
 
     composeDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      //this.animal = result;
+      this.composeEvent.emit(result)
+     
+      
     });
   }
   
