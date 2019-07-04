@@ -1,12 +1,13 @@
 <mat-toolbar class="btn-color-blue">
   <span class="text-whight mr-2">
-      <mat-checkbox (change)="appRightHeader.seletAll($event)">All</mat-checkbox>
+      <mat-checkbox (change)="appRightHeader.seletAll($event)" [checked]="checkAllBtn" [(ngModel)]="checkAllBtn">All</mat-checkbox>
   </span>
+  <span *ngIf="headerBtnHideShow">
   <span class="text-whight mr-2">
     <mat-icon matTooltip="Move to trash" class="handCursor" (click)="appRightHeader.deleteSelected()">delete</mat-icon>
   </span>
   <span class="text-whight mr-3">
-    <mat-icon matTooltip="Mark as important" class="handCursor">folder_special</mat-icon>
+    <mat-icon matTooltip="Mark as important" class="handCursor" (click)="appRightHeader.markAll()">folder_special</mat-icon>
   </span>
   <span class="text-whight mr-3">
     <mat-icon matTooltip="Move to archive" class="handCursor">archive</mat-icon>
@@ -14,5 +15,9 @@
   <span class="text-whight">
     <mat-icon matTooltip="Report spam" class="handCursor">error</mat-icon>
   </span>
+</span>
 </mat-toolbar>
-<app-inbox-right-side #appRightHeader> </app-inbox-right-side>
+<app-inbox-right-side #appRightHeader 
+(lengthEvent)="getMailLength($event)" 
+(selectAllEvent)="selectAllVal($event)" 
+(uncheckEvent)="uncheckAllBtn($event)"> </app-inbox-right-side>
