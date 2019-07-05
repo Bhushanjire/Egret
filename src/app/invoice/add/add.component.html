@@ -1,0 +1,89 @@
+<mat-card>
+  <mat-card-content>
+
+
+<div class="text-size-14">
+  <div fxLayout="row" class="mb-3" dir="rtl">
+    <button mat-raised-button class="btn-color-blue text-whight" routerLink="/user/invoice/add">Save</button>&nbsp;
+    <button mat-button>Cancel</button>
+  </div>
+
+  <div fxLayout="row" class="mb-3" fxLayoutGap="10">
+    <div fxFlex="35">
+      <p><strong>Order Info</strong> </p>
+      <p>Order Number</p>
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Order No." required>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="30"></div>
+    <!-- fxLayoutAlign="end" -->
+    <div fxFlex="35" >
+
+      <div fxLayout="column" fxFlexAlign="end">
+        <p>
+          <mat-radio-group aria-labelledby="example-radio-group-label" labelPosition="before"
+            class="example-radio-group">
+            <mat-radio-button class="example-radio-button">Pending</mat-radio-button>
+            <mat-radio-button class="example-radio-button">Processing</mat-radio-button>
+            <mat-radio-button class="example-radio-button">Delivered</mat-radio-button>
+          </mat-radio-group>
+        </p>
+      </div>
+      <div fxLayout="column">
+        <p>
+          Order Date
+        </p>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <mat-divider class="mb-3"></mat-divider>
+  <div fxLayout="row"  fxLayoutGap="10">
+    <div fxFlex="35">
+      <p><strong>Bill From</strong> </p>
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Name of seller" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address of seller" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="30"></div>
+    <!-- fxLayoutAlign="end" -->
+    <div fxFlex="35" fxFlexAlign="end">
+      <p><strong>Bill To</strong> </p>
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Name of Buyer" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Address of Buyer" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3"></div>
+  <div fxLayout="row" class="mb-3" fxLayoutGap="10">
+    <div fxFlex="20">#</div>
+    <div fxFlex="20">Item Name</div>
+    <div fxFlex="20">Unit Price</div>
+    <div fxFlex="20">Unit</div>
+    <div fxFlex="20">Cost</div>
+  </div>
+</div>
+</mat-card-content>
+</mat-card>

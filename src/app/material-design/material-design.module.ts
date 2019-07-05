@@ -30,10 +30,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort';
-
-
-
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -71,7 +69,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatTabsModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+
   ],
   exports:[
     CommonModule,
@@ -103,7 +104,12 @@ import {MatSortModule} from '@angular/material/sort';
     MatTabsModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
+  ],
+  providers: [  
+    MatDatepickerModule,  
   ]
 })
 export class MaterialDesignModule { }

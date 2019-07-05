@@ -1,0 +1,25 @@
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 2px;
+    font-size: 14px;
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .colomnPaddingRight{
+    padding-right: 15%;
+  }
+  .colomnPaddingLeft{
+    padding-left: 15%;
+  }
