@@ -48,12 +48,12 @@
 
     <div class="row" style="margin-top:80px">
       <div class="col-md-6">
-        <button mat-button [mat-dialog-close]="true">Cancel</button>
+        <button type="button" mat-button (click)="closeComposeMail()">Cancel</button>
       </div>
       <div class="col-md-6 text-right">
           {{mailAttachment}}
         <mat-icon (click)="openAttchment($event)" class="handCursor">attachment</mat-icon>&nbsp;
-        <button mat-raised-button color="primary" [disabled]="composeForm.invalid">Send</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="composeForm.invalid">Send</button>
       </div>
     </div>
   </form>

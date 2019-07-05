@@ -31,11 +31,14 @@ export class InboxLeftSideComponent implements OnInit {
     });
 
     composeDialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.composeEvent.emit(result)
+   // console.log("result",result);
+    
+      if(result){
+        this.composeEvent.emit(result);
+      }
      
-      
     });
   }
+  
   
 }

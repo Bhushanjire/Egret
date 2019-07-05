@@ -11,6 +11,10 @@ import { InboxHeaderComponent } from './inbox-header/inbox-header.component';
 import { ComposeModelComponent } from './compose-model/compose-model.component';
 import { QuillModule } from 'ngx-quill';
 import { MailComponent } from './mail/mail.component';
+import { StarredComponent } from './starred/starred.component';
+import { SendComponent } from './send/send.component';
+import { DraftComponent } from './draft/draft.component';
+import { SpamComponent } from './spam/spam.component';
 
 
 
@@ -24,7 +28,11 @@ import { MailComponent } from './mail/mail.component';
     InboxRightSideComponent,
     InboxHeaderComponent,
     ComposeModelComponent,
-    MailComponent
+    MailComponent,
+    StarredComponent,
+    SendComponent,
+    DraftComponent,
+    SpamComponent
   ],
   imports: [
     CommonModule,
