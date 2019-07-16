@@ -52,4 +52,5 @@ export class CommanService {
   public signinSer(data){
     return this.httpClient.post('http://localhost/bhAPI/signin.php',data).pipe(map((res:any)=>res));
   }
+
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         }

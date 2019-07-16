@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./productlist.component.scss']
 })
 export class ProductlistComponent implements OnInit {
-
   min: number;
   max: number;
   hideCategory: boolean = true;
@@ -37,6 +36,8 @@ export class ProductlistComponent implements OnInit {
 
   ngOnInit() {
     this.commanServie.getlist().subscribe(responce => {
+     // console.log(responce.data);
+      
       if (responce.success == true) {
         //this.productlistdata = responce.data;
 
@@ -57,6 +58,7 @@ export class ProductlistComponent implements OnInit {
     });
 
     this.getCartCount();
+
 
 
   }
