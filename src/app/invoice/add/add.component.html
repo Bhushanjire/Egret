@@ -5,7 +5,7 @@
 <div class="text-size-14">
   <div fxLayout="row" class="mb-3" dir="rtl">
     <button type="submit" mat-raised-button class="btn-color-blue text-whight" >Save</button>&nbsp;
-    <button mat-button>Cancel</button>
+    <button mat-button routerLink='/user/invoice/list'>Cancel</button>
   </div>
 
   <div fxLayout="row" class="mb-3" fxLayoutGap="10">
@@ -91,8 +91,9 @@
             <div class="row">
                <div class="col-md-1">{{i+1}}</div>
                 <div class="col-md-10"><app-add-item [myForm]="orderForm.controls.formArray.controls[i]"></app-add-item></div>
-                <div class="col-md-1"><button type="button" mat-button (click)="deleteItem(i)">Delete</button></div> 
-            </div>
+                <div class="col-md-1" *ngIf="i!==0;"><button type="button" mat-button (click)="deleteItem(i)">Delete</button></div> 
+                <!-- *ngIf="i!==0;else false" -->
+              </div>
         </div>
     </div>
     <div fxLayout="row" class="mb-3" fxLayoutAlign="end" >
