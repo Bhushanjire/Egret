@@ -42,6 +42,10 @@ const Userroutes: Routes = [
       {
         path : 'invoice',
         loadChildren : () =>import('../invoice/invoice.module').then(mod=>mod.InvoiceModule)
+      },
+      {
+        path : 'chat',
+        loadChildren : () =>import('../chat/chat.module').then(mod=>mod.ChatModule)
       }
     ]
   },

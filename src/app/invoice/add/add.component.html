@@ -1,109 +1,140 @@
 <mat-card>
   <mat-card-content>
 
-<form (ngSubmit)='placeOrder(orderForm)' [formGroup]="orderForm">
-<div class="text-size-14">
-  <div fxLayout="row" class="mb-3" dir="rtl">
-    <button type="submit" mat-raised-button class="btn-color-blue text-whight" >Save</button>&nbsp;
-    <button mat-button routerLink='/user/invoice/list'>Cancel</button>
-  </div>
+    <form (ngSubmit)='placeOrder(orderForm)' [formGroup]="orderForm">
+      <div class="text-size-14">
+        <div fxLayout="row" class="mb-3" dir="rtl">
+          <button type="submit" mat-raised-button class="btn-color-blue text-whight">Save</button>&nbsp;
+          <button mat-button routerLink='/user/invoice/list'>Cancel</button>
+        </div>
 
-  <div fxLayout="row" class="mb-3" fxLayoutGap="10">
-    <div fxFlex="35">
-      <p><strong>Order Info</strong> </p>
-      <p>Order Number</p>
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Order No."  formControlName="order_number" required >
-          <mat-error></mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div fxFlex="30"></div>
-    <!-- fxLayoutAlign="end" -->
-    <div fxFlex="35" >
-      <div fxLayout="column" fxFlexAlign="end">
-        <p>
-          <mat-radio-group aria-labelledby="example-radio-group-label" labelPosition="before"
-          class="example-radio-group" formControlName="order_status">
-            <mat-radio-button class="example-radio-button" value="Pending">Pending</mat-radio-button>
-            <mat-radio-button class="example-radio-button" value="Processing">Processing</mat-radio-button>
-            <mat-radio-button class="example-radio-button" value="Delivered" >Delivered</mat-radio-button>
-          </mat-radio-group>
-          
-        </p>
-      </div>
-      <div fxLayout="column">
-        <p>
-          Order Date
-        </p>
-        <mat-form-field>
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="order_date" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-<mat-divider></mat-divider>
-<br>
-  <div fxLayout="row"  fxLayoutGap="10">
-    <div fxFlex="35">
-      <p><strong>Bill From</strong> </p>
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Name of seller" formControlName="seller_name" required>
-          <mat-error></mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Address of seller" formControlName="seller_address" required>
-          <mat-error></mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-    <div fxFlex="30"></div>
-    <!-- fxLayoutAlign="end" -->
-    <div fxFlex="35" fxFlexAlign="end">
-      <p><strong>Bill To</strong> </p>
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Name of Buyer" formControlName="buyer_name" required>
-          <mat-error></mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Address of Buyer" formControlName="buyer_address" required>
-          <mat-error></mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-  </div>
-  <div class="mb-3"></div>
-  <div class="row mb-3 itemList">
-    <div class="col-md-1">#</div>
-    <div class="col-md-3">Item Name</div>
-    <div class="col-md-3">Unit Price</div>
-    <div class="col-md-3">Unit</div>
-    <div class="col-md-2">Cost</div>
-  </div>
-  
-    <div formArrayName="formArray">
-        <div *ngFor="let control of orderForm.controls['formArray'].controls; let i = index">
+        <div fxLayout="row" class="mb-3" fxLayoutGap="10">
+          <div fxFlex="35">
+            <p><strong>Order Info</strong> </p>
+            <p>Order Number</p>
+            <div class="example-container">
+              <mat-form-field>
+                <input matInput placeholder="Order No." formControlName="order_number" required>
+                <input matInput hidden formControlName="invoice_id" required>
+                <mat-error></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex="30"></div>
+          <!-- fxLayoutAlign="end" -->
+          <div fxFlex="35" fxFlexAlign="end">
+              <p fxLayoutAlign="end">
+                <mat-radio-group aria-labelledby="example-radio-group-label" labelPosition="before"
+                  class="example-radio-group" formControlName="order_status">
+                  <mat-radio-button class="example-radio-button" value="Pending">Pending</mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="Processing">Processing</mat-radio-button>
+                  <mat-radio-button class="example-radio-button" value="Delivered">Delivered</mat-radio-button>
+                </mat-radio-group>
+              </p>
+              <p fxLayoutAlign="end">
+                Order Date
+              </p>
+              <p fxLayoutAlign="end">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="order_date"
+                  required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </p>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+        <br>
+        <div fxLayout="row" fxLayoutGap="10">
+          <div fxFlex="35">
+            <p><strong>Bill From</strong> </p>
+            <div class="example-container">
+              <mat-form-field>
+                <input matInput placeholder="Name of seller" formControlName="seller_name" required>
+                <mat-error></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Address of seller" formControlName="seller_address" required>
+                <mat-error></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div fxFlex="30"></div>
+          <!-- fxLayoutAlign="end" -->
+          <div fxFlex="35" fxFlexAlign="end">
+            <p><strong>Bill To</strong> </p>
+            <div class="example-container">
+              <mat-form-field>
+                <input matInput placeholder="Name of Buyer" formControlName="buyer_name" required>
+                <mat-error></mat-error>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Address of Buyer" formControlName="buyer_address" required>
+                <mat-error></mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3"></div>
+        <div class="row mb-3 itemList">
+          <div class="col-md-1">#</div>
+          <div class="col-md-3">Item Name</div>
+          <div class="col-md-3">Unit Price</div>
+          <div class="col-md-3">Unit</div>
+          <div class="col-md-2">Cost</div>
+        </div>
+
+        <div formArrayName="formArray">
+          <div *ngFor="let control of orderForm.controls['formArray'].controls; let i = index">
             <div class="row">
-               <div class="col-md-1">{{i+1}}</div>
-                <div class="col-md-10"><app-add-item [myForm]="orderForm.controls.formArray.controls[i]"></app-add-item></div>
-                <div class="col-md-1" *ngIf="i!==0;"><button type="button" mat-button (click)="deleteItem(i)">Delete</button></div> 
-                <!-- *ngIf="i!==0;else false" -->
+              <div class="col-md-1">{{i+1}}</div>
+              <div class="col-md-10">
+                <app-add-item [myForm]="orderForm.controls.formArray.controls[i]"></app-add-item>
               </div>
+              <div class="col-md-1" *ngIf="i!==0;"><button type="button" mat-button
+                  (click)="deleteItem(i)">Delete</button></div>
+              <!-- *ngIf="i!==0;else false" -->
+            </div>
+          </div>
         </div>
-    </div>
-    <div fxLayout="row" class="mb-3" fxLayoutAlign="end" >
-        <div fxFlex="100" fxLayoutAlign="end">  
-          <button type="button" mat-button (click)="addItem()" > Add Item</button>
+        <div fxLayout="row" class="mb-3" fxLayoutAlign="end">
+          <div fxFlex="100" fxLayoutAlign="end">
+            <button type="button" mat-button (click)="addItem()"> Add Item</button>
+          </div>
+        </div>
+
+        <div fxLayout="row" class="mb-3" fxLayoutAlign="end">
+          <div fxFlex="70"></div>
+          <div fxFlex="10">Sub Total:</div>
+          <div fxFlex="10">
+          
+              <input matInput hidden formControlName="sub_total" required>
+            
+          </div>
+          <div fxFlex="10">{{getSubTotal()}}</div>
+        </div>
+        <div fxLayout="row" class="mb-3" fxLayoutAlign="end">
+            <div fxFlex="70"></div>
+          <div fxFlex="10">VAT:</div>
+          <div fxFlex="10">
+            <mat-form-field><input matInput placeholder="VAT" formControlName="vat"></mat-form-field>
+          </div>
+          <div fxFlex="10">
+            {{(getSubTotal()*orderForm.controls.vat.value)/100}}
+          </div>
+        </div>
+        <div fxLayout="row" class="mb-3" fxLayoutAlign="end">
+            <div fxFlex="70"></div>
+          <div fxFlex="10"><strong>Grand Total:</strong></div>
+          <div fxFlex="10">
+            <mat-form-field> <input matInput placeholder="Currency" formControlName="currency"></mat-form-field>
+          </div>
+          <div fxFlex="10">{{orderForm.controls.currency.value}}{{getSubTotal()+(getSubTotal()*orderForm.controls.vat.value)/100}}</div>
         </div>
       </div>
-</div>
 
-</form>
+    </form>
 
-</mat-card-content>
+  </mat-card-content>
 </mat-card>

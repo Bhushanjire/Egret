@@ -1,3 +1,184 @@
-<p>
-  view works!
-</p>
+<mat-card>
+  <mat-card-content>
+    <div class="text-size-14">
+      <div fxLayout="row" class="mb-3">
+        <div fxFlex="60">
+          <mat-icon class="handCursor" routerLink="/user/invoice/list">arrow_back</mat-icon>
+        </div>
+        <div fxFlex="40" fxLayoutAlign="end">
+          <button type="submit" mat-raised-button class="btn-color-blue text-whight"
+            (click)="editInvoice(order_id)">Edit Invoice</button>&nbsp;
+          <button mat-button class="btn-color-yellow" 
+          printSectionId="print-section"
+          printTitle="Order Invoice"  
+          ngxPrint>Print Invoice</button>
+        </div>
+      </div>
+
+      <div fxLayout="row" class="mb-3" fxLayoutGap="10">
+        <div fxFlex="35">
+          <p><strong>Order Info</strong> </p>
+          <p>Order Number</p>
+          #{{order_number}}
+        </div>
+        <div fxFlex="30"></div>
+        <!-- fxLayoutAlign="end" -->
+        <!-- fxFlexAlign="end" -->
+        <div fxFlex="35" fxFlexAlign="end">
+          <p fxLayoutAlign="end"><strong>Order Status:</strong>{{order_status}}</p>
+          <p fxLayoutAlign="end"><strong>Order Date:</strong>{{order_date}}</p>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" class="mb-3" fxLayoutGap="10">
+        <div fxFlex="35">
+          <p></p>
+          <p><strong>Bill From </strong> </p>
+          <p>{{seller_name}} <br>
+            {{seller_address}}
+          </p>
+        </div>
+        <div fxFlex="30"></div>
+        <!-- fxLayoutAlign="end" -->
+        <div fxFlex="35" fxFlexAlign="end">
+          <p></p>
+          <p fxLayoutAlign="end"><strong>Bill To </strong> </p>
+          <p fxLayoutAlign="end">{{buyer_name}} </p>
+          <p fxLayoutAlign="end">{{buyer_address}}</p>
+        </div>
+      </div>
+      <br>
+      <div class="mb-3"></div>
+      <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+          <mat-cell *matCellDef="let element"> </mat-cell>
+        </ng-container>
+
+        <!-- Item Name Column -->
+        <ng-container matColumnDef="item_name">
+          <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.item_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Unit Price Column -->
+        <ng-container matColumnDef="unit_price">
+          <mat-header-cell *matHeaderCellDef> Unit Price </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.item_price}} </mat-cell>
+        </ng-container>
+
+        <!-- Unit Column -->
+        <ng-container matColumnDef="unit">
+          <mat-header-cell *matHeaderCellDef> Unit </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.item_unit}} </mat-cell>
+        </ng-container>
+
+        <!-- Cost Column -->
+        <ng-container matColumnDef="cost">
+          <mat-header-cell *matHeaderCellDef> Cost </mat-header-cell>
+          <mat-cell *matCellDef="let element">$ {{element.item_price*element.item_unit}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <div class="mb-3"></div>
+      <div fxLayout="row" class="mb-3">
+        <div fxFlex="80"></div>
+        <div fxFlex="10">Sub Total:</div>
+        <div fxFlex="10" fxLayoutAlign="end">${{sub_total}}</div>
+      </div>
+      <div fxLayout="row" class="mb-3">
+        <div fxFlex="80"></div>
+        <div fxFlex="10">Vat:</div>
+        <div fxFlex="10" fxLayoutAlign="end">${{(sub_total*vat)/100}}</div>
+      </div>
+      <div fxLayout="row" class="mb-3">
+        <div fxFlex="80"></div>
+        <div fxFlex="10"><strong>Grand Total:</strong></div>
+        <div fxFlex="10" fxLayoutAlign="end"><strong>${{grand_total}}</strong></div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<div id="print-section" style="display: none">
+  <table width="100%" style="margin-top: 150px">
+    <tr>
+      <td>
+        <p><strong>Order Info</strong></p>
+        <p>Order Number</p>
+        <p>#{{order_number}}</p>
+      </td>
+      <td style="text-align:right;">
+        <p><strong>Order Status</strong> : {{order_status}}</p>
+        <p><strong>Order Date</strong> : {{order_date}}</p>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="100%">
+        <hr>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>Bill From</strong></p>
+        <p>{{seller_name}}</p>
+        <p>{{seller_address}}</p>
+      </td>
+      <td style="text-align: right">
+          <p><strong>Bill To</strong></p>
+          <p>{{buyer_name}}</p>
+          <p>{{buyer_address}}</p>
+      </td>
+    </tr>
+  </table>
+  <table width="100%" class="table" style="margin-top: 80px">
+    <tr class="text-muted" style="height:30px;text-align: center">
+      <td>#</td>
+      <td>Item Name</td>
+      <td>Unit Price</td>
+      <td>Unit</td>
+      <td>Cost</td>
+    </tr>
+    <tr>
+        <td colspan="100%">
+          <hr>
+        </td>
+      </tr>
+    <tr *ngFor="let data of dataSource; let i = index" style="text-align: center;height:30px">
+      <td>{{i+1}}</td>
+      <td>{{data.item_name}}</td>
+      <td>{{data.item_price}}</td>
+      <td>{{data.item_unit}}</td>
+      <td>{{data.item_price*data.item_unit}}</td>
+    </tr>
+    <tr>
+        <td colspan="100%">
+          <hr>
+        </td>
+      </tr>
+  </table>
+  <table width="100%" style="margin-top: 30px">
+      <tr>
+          <th width="60%">&nbsp;</th>
+          <th width="30%">&nbsp;</th>
+          <th width="10%">&nbsp;</th>
+        </tr>
+    <tr style="height:30px">
+      <td>&nbsp;</td>
+      <td>Sub Total:</td>
+      <td>${{sub_total}}</td>
+    </tr>
+    <tr style="height:30px">
+        <td>&nbsp;</td>
+        <td>VAT:</td>
+        <td>${{(sub_total*vat)/100}}</td>
+      </tr>
+      <tr style="height:30px">
+          <td>&nbsp;</td>
+          <td><strong>Grand Total</strong></td>
+          <td>${{grand_total}}</td>
+        </tr>
+  </table>
+</div>

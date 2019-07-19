@@ -18,4 +18,7 @@ export class InvoiceService {
   deleteInvoice(data){
     return this.httpClient.post('http://localhost/egret_api/api/invoice/deleteInvoice',data).pipe(map((res:any)=>res));
   }
+  getInvoiceDetails(data){
+    return this.httpClient.post('http://localhost/egret_api/api/invoice/getInvoiceDetails',data).pipe(map((res:any)=>res));
+  }
 }
