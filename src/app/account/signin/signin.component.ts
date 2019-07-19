@@ -33,6 +33,7 @@ export class SigninComponent implements OnInit {
         localStorage.setItem('first_name', responce.data.first_name);
         localStorage.setItem('last_name', responce.data.last_name);
         localStorage.setItem('email_id', responce.data.email_id);
+        localStorage.setItem('profile_photo', responce.data.profile_photo);
         this.toastr.success(responce.message);
         this.router.navigate(['/', 'user']).then(nav => {
           

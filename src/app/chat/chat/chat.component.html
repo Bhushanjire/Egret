@@ -1,3 +1,100 @@
-<p>
-  chat works!
-</p>
+<div fxLayout="row" class="mb-3">
+  <div fxFlex="100">Chat</div>
+</div>
+<mat-card>
+  <mat-card-content>
+    <mat-drawer-container class="example-container" autosize>
+      <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-toolbar class="btn-color-blue">
+          <mat-list>
+            <mat-list-item>
+              <img matListAvatar src="/assets/images/profile.jpeg" alt="Photo">
+              <h3 matLine class="text-whight"> {{first_name}} {{last_name}} </h3>
+              <!-- <p matLine>
+                          <span> Test1 </span>
+                          <span class="demo-2"> Content</span>
+                        </p> -->
+            </mat-list-item>
+          </mat-list>
+        </mat-toolbar>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let userData of userList" class="handCursor"
+            (click)="getUserDetails(userData.user_id)">
+            <img matListAvatar src="{{userData.profile_photo}}" alt="Photo">
+            <h3 matLine> {{userData.first_name}} {{userData.last_name}} </h3>
+            <p matLine>
+              <span class="text-muted"> Jun 12,2017 </span>
+              <!-- <span class="demo-2"> Content</span> -->
+            </p>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-drawer>
+      <mat-toolbar class="btn-color-blue">
+        <span>
+          <mat-icon (click)="drawer.toggle()" class="handCursor text-whight">short_text</mat-icon>
+        </span>
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+
+        <span><button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon class="text-whight">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>account_circle</mat-icon>
+              <span>Contact Info</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>volume_mute</mat-icon>
+              <span>Mute</span>
+            </button>
+            <button mat-menu-item>
+              <mat-icon>delete</mat-icon>
+              <span>Clear Chat</span>
+            </button>
+          </mat-menu>
+        </span>
+      </mat-toolbar>
+      <div class="example-sidenav-content">
+        <div fxLayout="row" class="mb-3">
+          <div fxFlex="100">
+            <mat-list>
+              <mat-list-item *ngFor="let chatData of chatList">
+                <img matListAvatar src="{{chatData.to_profile_photo}}" alt="...">
+                <h3 matLine> {{chatData.from_user_name}} </h3>
+                <p matLine>
+                  <span> {{chatData.message}} </span>
+                </p>
+                <p matLine>
+                  <span class="text-muted"> {{chatData.added_date_time}} </span>
+                </p>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+<br>
+        
+      </div>
+      <div fxLayout="row" class="mb-3">
+          <div fxFlex="100">
+              <form (ngSubmit)="sendMessage(chatForm)" [formGroup]="chatForm">
+                <mat-form-field>
+                  <input matInput placeholder="Type your message" formControlName="message" required>
+                  <input matInput hidden formControlName="from_user_id" required>
+                  <input matInput hidden formControlName="from_user_name" required>
+                  <input matInput hidden formControlName="from_profile_photo" required>
+                  <input matInput hidden formControlName="to_user_id" required>
+                  <input matInput hidden formControlName="to_user_name" required>
+                  <input matInput hidden formControlName="to_profile_photo" required>
+                </mat-form-field>
+                <button type="submit" mat-fab class="btn-color-blue">
+                  <mat-icon>send</mat-icon>
+                </button>
+              </form>
+            
+          </div>
+        </div>
+    </mat-drawer-container>
+  </mat-card-content>
+</mat-card>
