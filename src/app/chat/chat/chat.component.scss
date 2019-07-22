@@ -23,4 +23,35 @@
   mat-card{
       padding: 0px !important;
   }
-  
+  mat-form-field{
+    width: 93%;
+    padding: 10px;
+  }
+  .toolbar1{
+    border-radius: 5px 0px 0px 0px;
+    padding: 0px;
+  }
+  .toolbar2{
+    border-radius: 0px 5px 0px 0px;
+  }
+  .messageColor{
+    background-color:#2196f3;
+    color:white;
+    padding: 5px;
+    display: inline-block;
+    border-radius: 4px;
+  }
+
+.noContact{
+  flex-direction: column;
+  box-sizing: border-box;
+  display: flex;
+  max-width: 50%;
+  place-content: center;
+  align-items: center;
+  height: 200px;
+  border-radius: 50%;
+}
+body{
+  font-size: 14px;
+}

@@ -15,11 +15,19 @@ export class ChatComponent implements OnInit {
   userList : any;
   first_name : any;
   last_name : any;
+  to_user_name ="";
+  to_profile_photo="";
+  to_user_id :any;
   chatList=[];
   chatForm: FormGroup;
+  initialImage=false;
+  current_user_id : any;
+  yesContact =false;
+  noContact = true;
   constructor(private chatService : ChatService) { }
 
   ngOnInit() {
+    this.current_user_id = localStorage.getItem('user_id');
     this.first_name = localStorage.getItem('first_name');
     this.last_name = localStorage.getItem('last_name');
     this.postData = {
@@ -41,13 +49,17 @@ export class ChatComponent implements OnInit {
       "to_user_name" : new FormControl(null,Validators.required),
       "to_profile_photo" : new FormControl(null,Validators.required),
      });
-
+     
+      
+     
   }
   sendMessage(data){
     this.chatService.saveChats(data.value).subscribe(responce=>{
       if(responce.success==true){
         this.getChatList(data.value.to_user_id);
-        this.chatForm.reset();
+        this.chatForm.patchValue({
+          "message" : ""
+        });
       }else{
 
       }
@@ -55,10 +67,10 @@ export class ChatComponent implements OnInit {
     });
     
   }
-  getUserDetails(user_id){
+  getUserDetails(to_user_id){
     this.postData = {
       "from_user_id":localStorage.getItem('user_id'),
-      "to_user_id" : user_id
+      "to_user_id" : to_user_id
     }
     this.chatService.getChatUserDetails(this.postData).subscribe(responce=>{
         if(responce.success==true){
@@ -70,12 +82,23 @@ export class ChatComponent implements OnInit {
             "to_user_name" : responce.data.first_name+" "+responce.data.last_name,
             "to_profile_photo" : responce.data.profile_photo,
           });
-
+          this.to_user_name = responce.data.first_name+" "+responce.data.last_name;
+          this.to_profile_photo = responce.data.profile_photo;
+          this.initialImage=true;
         }
     });
-    this.getChatList(user_id);
-  }
+    this.getChatList(to_user_id);
+    this.yesContact=true;
+    this.noContact=false;
+    // setInterval(function(){ 
+    //   this.getChatList(to_user_id)
+    //   //console.log('set time',to_user_id);
+    //  }, 1000);
 
+  //    setInterval(() => {
+  //     this.getChatList(to_user_id);
+  // }, 8000);
+  }
   getChatList(to_user_id){
     this.postData={
       "from_user_id":localStorage.getItem('user_id'),
