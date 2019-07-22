@@ -46,6 +46,10 @@ const Userroutes: Routes = [
       {
         path : 'chat',
         loadChildren : () =>import('../chat/chat.module').then(mod=>mod.ChatModule)
+      },
+      {
+        path : 'EventCalendar',
+        loadChildren : () =>import('../event-calendar/event-calendar.module').then(mod=>mod.EventCalendarModule)
       }
     ]
   },
