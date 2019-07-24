@@ -1,6 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {EventCalendarService} from '../event-calendar.service';
 
 export interface DialogData {
   animal: string;
@@ -16,7 +17,7 @@ export class AddeventComponent implements OnInit {
  
   eventForm : FormGroup;
   constructor(public eventDialogRef: MatDialogRef<AddeventComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { 
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,private eventService : EventCalendarService) { 
       eventDialogRef.disableClose = true;
     }
 
@@ -33,6 +34,14 @@ export class AddeventComponent implements OnInit {
   }
   addEvent(data){
     console.log(data);
+    this.eventService.addEventService(data).subscribe(responce=>{
+      if(responce.success==true){
+
+      }else{
+        
+      }
+
+    });
   }
   closeModel(){
     this.eventDialogRef.close();
