@@ -1,0 +1,73 @@
+<div class="event-form">
+  <mat-toolbar class="btn-color-blue text-whight">
+    <span>Add Event</span>
+    <span class="example-fill-remaining-space"></span>
+    <span>
+      <mat-icon (click)="closeModel()">close</mat-icon>
+    </span>
+  </mat-toolbar>
+  <form (ngSubmit)="addEvent(eventForm)" [formGroup]="eventForm" class="example-form">
+    <div class="flex-container">
+      <div style="flex-grow: 1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Title" type="text" formControlName="title" id="title">
+        </mat-form-field>
+        <mat-error *ngIf="hasError('title', 'required')">Please enter title</mat-error>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div style="flex-grow: 1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Primary Color" formControlName="primary_color" id="primary_color">
+          <mat-error *ngIf="hasError('primary_color', 'required')">Please select primary Color</mat-error>
+        </mat-form-field>
+      </div>
+      <div style="flex-grow: 1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Seconday Color" formControlName="secondary_color" id="secondary_color">
+          <mat-error *ngIf="hasError('secondary_color', 'required')">Please select seconday Color</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div style="flex-grow: 1">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Start Date" formControlName="start_date" id="start_date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <mat-error *ngIf="hasError('start_date', 'required')">Please select start date</mat-error>
+        </mat-form-field>
+      </div>
+      <div style="flex-grow: 1">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker2" placeholder="End Date" formControlName="end_date" id="end_date">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error *ngIf="hasError('end_date', 'required')">Please select end date</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div style="flex-grow: 1">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Location" formControlName="location" id="location">
+          <mat-error *ngIf="hasError('end_date', 'required')">Please enter location</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex-container">
+      <div style="flex-grow: 1">
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Notes" formControlName="notes" id="notes"></textarea>
+          <mat-error *ngIf="hasError('notes', 'required')">Please enter notes</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="saveBtn">
+      <div style="flex-grow: 1">
+        <button mat-raised-button color="primary" [disabled]="eventForm.invalid">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

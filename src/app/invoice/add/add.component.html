@@ -118,7 +118,7 @@
             <div fxFlex="70"></div>
           <div fxFlex="10">VAT:</div>
           <div fxFlex="10">
-            <mat-form-field><input matInput placeholder="VAT" formControlName="vat"></mat-form-field>
+            <mat-form-field><input matInput type="number"   placeholder="VAT" formControlName="vat"></mat-form-field>
           </div>
           <div fxFlex="10">
             {{(getSubTotal()*orderForm.controls.vat.value)/100}}
@@ -128,7 +128,7 @@
             <div fxFlex="70"></div>
           <div fxFlex="10"><strong>Grand Total:</strong></div>
           <div fxFlex="10">
-            <mat-form-field> <input matInput placeholder="Currency" formControlName="currency"></mat-form-field>
+            <mat-form-field> <input matInput type="text" placeholder="Currency" formControlName="currency"></mat-form-field>
           </div>
           <div fxFlex="10">{{orderForm.controls.currency.value}}{{getSubTotal()+(getSubTotal()*orderForm.controls.vat.value)/100}}</div>
         </div>

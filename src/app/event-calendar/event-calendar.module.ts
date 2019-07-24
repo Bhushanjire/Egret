@@ -8,11 +8,12 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { AddeventComponent } from './addevent/addevent.component';
+
 
 
 @NgModule({
-  declarations: [EventCalendarComponent],
+  declarations: [EventCalendarComponent, AddeventComponent],
   imports: [
     CommonModule,
     EventCalendarRoutingModule,
@@ -23,8 +24,10 @@ import { FormsModule } from '@angular/forms';
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
-    FormsModule
-    
+  ],
+  exports:[EventCalendarComponent],
+  entryComponents: [
+    AddeventComponent,
   ]
 })
 export class EventCalendarModule { }

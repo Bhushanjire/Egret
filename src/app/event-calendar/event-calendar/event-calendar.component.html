@@ -1,29 +1,26 @@
 <div fxLayout="column" fxLayoutAlign="space-between" fxLayoutGap="20px">
   <div>Calendar</div>
-  <div> <button mat-raised-button class="btn-color-yellow">Add Event</button>
+  <div> <button mat-raised-button class="btn-color-yellow" (click)="addEvent()">Add Event</button>
   </div>
 </div>
-<mat-card>
+<mat-card class="mat-card">
   <mat-card-title class="btn-color-blue text-whight">
-    <div fxLayout="row" fxLayoutAlign="center center">
-      <div fxLayoutAlign="center" fxFlex="35">
+    <div class="flex-container">
+      <div>
         <mat-icon mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()">chevron_left</mat-icon>
-
-        <mat-icon mwlCalendarToday [(viewDate)]="viewDate">today</mat-icon>
-        <mat-icon mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+          (viewDateChange)="closeOpenMonthViewDay()" class="mat_icon">chevron_left</mat-icon>
+        <mat-icon mwlCalendarToday [(viewDate)]="viewDate" class="mat_icon">today</mat-icon>
+        <mat-icon mwlCalendarNextView [view]="view" [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()" class="mat_icon">
           chevron_right</mat-icon>
       </div>
-      <div fxLayoutAlign="center" fxFlex="30">
-        <div>
-          <h6>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h6>
-        </div>
+      <div>
+          {{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}
       </div>
-      <div fxLayoutAlign="center" fxFlex="35">
-        <mat-icon (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">view_comfy
+      <div >
+        <mat-icon (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month" class="mat_icon">view_comfy
         </mat-icon>
-        <mat-icon (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">view_week</mat-icon>
-        <mat-icon (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">view_day</mat-icon>
+        <mat-icon (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week" class="mat_icon">view_week</mat-icon>
+        <mat-icon (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day" class="mat_icon">view_day</mat-icon>
       </div>
     </div>
   </mat-card-title>
@@ -49,7 +46,7 @@
 
 <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
 
-<br /><br /><br />
+<!-- <br /><br /><br />
 
 <h3>
   Edit events
@@ -125,4 +122,4 @@
       OK
     </button>
   </div>
-</ng-template>
+</ng-template> -->

@@ -19,7 +19,8 @@ import { Component, OnInit,ChangeDetectionStrategy,
     CalendarEventTimesChangedEvent,
     CalendarView
   } from 'angular-calendar';
-
+  import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
+  import { AddeventComponent } from '../addevent/addevent.component';
   const colors: any = {
     red: {
       primary: '#ad2121',
@@ -114,7 +115,7 @@ export class EventCalendarComponent implements OnInit {
   ];
 
   activeDayIsOpen: boolean = true;
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -153,6 +154,18 @@ export class EventCalendarComponent implements OnInit {
   }
 
   addEvent(): void {
+
+    const dialogRef = this.dialog.open(AddeventComponent, {
+      width: '500px',
+      //data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  
+
     this.events = [
       ...this.events,
       {

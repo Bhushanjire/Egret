@@ -6,10 +6,31 @@ h3 {
     background-color: #f5f5f5;
     padding: 15px;
   }
-  mat-card{
+  .mat-card{
     padding: 0px;
-    margin: 0px,0px,10px,10px;
+    margin-top:15px;
+    margin-bottom:15px
   }
   mat-card-title{
-    height: 50px;;
+    height: 60px;
+    text-align: center;
+  }
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 10px 10px; 
+    //background-color: DodgerBlue;
+  }
+  
+  .flex-container > div {
+   // background-color: #f1f1f1;
+    width: 100px;
+    margin: 15px;
+    text-align: center;
+    //line-height: 75px;
+    font-size: 14px;
+    flex-grow:1
+  }
+  .mat_icon{
+    margin-left:19px;
   }
