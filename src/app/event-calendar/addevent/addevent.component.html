@@ -18,13 +18,15 @@
     <div class="flex-container">
       <div style="flex-grow: 1">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Primary Color" formControlName="primary_color" id="primary_color">
+          <input matInput [(colorPicker)]="color1" [style.background]="color1" placeholder="Primary Color"
+            formControlName="primary_color" [value]="color1" id="primary_color">
           <mat-error *ngIf="hasError('primary_color', 'required')">Please select primary Color</mat-error>
         </mat-form-field>
       </div>
       <div style="flex-grow: 1">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Seconday Color" formControlName="secondary_color" id="secondary_color">
+          <input matInput [(colorPicker)]="color2" [style.background]="color2" placeholder="Seconday Color"
+            formControlName="secondary_color" [value]="color2" id="secondary_color">
           <mat-error *ngIf="hasError('secondary_color', 'required')">Please select seconday Color</mat-error>
         </mat-form-field>
       </div>
@@ -32,15 +34,19 @@
     <div class="flex-container">
       <div style="flex-grow: 1">
         <mat-form-field>
-          <input matInput [matDatepicker]="picker1" placeholder="Start Date" formControlName="start_date" id="start_date">
+          <input matInput [matDatepicker]="picker1" placeholder="Start Date" formControlName="start_date"
+            id="start_date" [min]="minStartDate" readonly (dateChange)="setMinDate($event)">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
           <mat-error *ngIf="hasError('start_date', 'required')">Please select start date</mat-error>
         </mat-form-field>
+
+
       </div>
       <div style="flex-grow: 1">
         <mat-form-field>
-          <input matInput [matDatepicker]="picker2" placeholder="End Date" formControlName="end_date" id="end_date">
+          <input matInput [matDatepicker]="picker2" placeholder="End Date" formControlName="end_date" id="end_date"
+            [min]="minEndDate" readonly>
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
           <mat-error *ngIf="hasError('end_date', 'required')">Please select end date</mat-error>

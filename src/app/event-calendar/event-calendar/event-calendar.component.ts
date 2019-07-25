@@ -180,8 +180,7 @@ export class EventCalendarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
+      this.showEvent();
     });
 
 
@@ -212,18 +211,33 @@ export class EventCalendarComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
   ngOnInit() {
+   this.showEvent();
+    
+  }
+
+  showEvent(){
     this.eventService.getEventListService().subscribe(responce=>{
       if(responce.success==true){
-         for(let i=0;i<responce.data.length;i++){
-          this.events[i]['start'] =new Date(responce.data[i].start);
-          this.events[i]['end'] =new Date(responce.data[i].end);
-          this.events[i]['title'] =responce.data[i].title;
-         }
-       // this.events = responce.data;
+        //  for(let i=0;i<responce.data.length;i++){
+        //   // this.events[i]['start'] =new Date(responce.data[i].start);
+        //   // this.events[i]['end'] =new Date(responce.data[i].end);
+        //   // this.events[i]['title'] =responce.data[i].title;
+        //   this.events.push({
+        //     "start" : new Date(responce.data[i].start),
+        //     "end" : new Date(responce.data[i].end),
+        //     "title" : responce.data[i].title
+        //   });
+        //  }
+        for (var i in responce.data) {
+            responce.data[i].start = new Date(responce.data[i].start);
+            responce.data[i].end = new Date(responce.data[i].end);
+            responce.data[i].title =responce.data[i].title;
+        }
+        console.log("responce",responce.data);
+        this.events = responce.data;
       }else{
       }
     });
-    
   }
 
 }
