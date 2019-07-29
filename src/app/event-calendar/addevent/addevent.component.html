@@ -1,6 +1,6 @@
 <div class="event-form">
   <mat-toolbar class="btn-color-blue text-whight">
-    <span>Add Event</span>
+    <span>{{btnLabel}} Event</span>
     <span class="example-fill-remaining-space"></span>
     <span>
       <mat-icon (click)="closeModel()">close</mat-icon>
@@ -11,6 +11,7 @@
       <div style="flex-grow: 1">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Title" type="text" formControlName="title" id="title">
+          <input type="hidden" formControlName="event_id" id="event_id">
         </mat-form-field>
         <mat-error *ngIf="hasError('title', 'required')">Please enter title</mat-error>
       </div>
@@ -18,15 +19,17 @@
     <div class="flex-container">
       <div style="flex-grow: 1">
         <mat-form-field class="example-full-width">
-          <input matInput [(colorPicker)]="color1" [style.background]="color1" placeholder="Primary Color"
-            formControlName="primary_color" [value]="color1" id="primary_color">
+          <!-- [value]="primary_color" -->
+          <input matInput [(colorPicker)]="primary_color" [style.background]="primary_color" placeholder="Primary Color"
+            formControlName="primary_color"  (colorPickerChange)="colorPickerChange($event,'primary_color')" id="primary_color">
           <mat-error *ngIf="hasError('primary_color', 'required')">Please select primary Color</mat-error>
         </mat-form-field>
       </div>
       <div style="flex-grow: 1">
         <mat-form-field class="example-full-width">
-          <input matInput [(colorPicker)]="color2" [style.background]="color2" placeholder="Seconday Color"
-            formControlName="secondary_color" [value]="color2" id="secondary_color">
+          <!-- [value]="secondary_color" -->
+          <input matInput [(colorPicker)]="secondary_color" [style.background]="secondary_color" placeholder="Seconday Color"
+            formControlName="secondary_color" (colorPickerChange)="colorPickerChange($event,'secondary_color')"  id="secondary_color">
           <mat-error *ngIf="hasError('secondary_color', 'required')">Please select seconday Color</mat-error>
         </mat-form-field>
       </div>
@@ -72,7 +75,7 @@
 
     <div class="saveBtn">
       <div style="flex-grow: 1">
-        <button mat-raised-button color="primary" [disabled]="eventForm.invalid">Save</button>
+        <button mat-raised-button color="primary" [disabled]="eventForm.invalid">{{btnLabel}}</button>
       </div>
     </div>
   </form>

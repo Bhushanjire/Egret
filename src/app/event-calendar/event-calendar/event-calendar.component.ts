@@ -24,6 +24,7 @@ import {
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { AddeventComponent } from '../addevent/addevent.component';
 import {EventCalendarService} from '../event-calendar.service';
+import { ToastrService } from 'ngx-toastr';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -53,6 +54,7 @@ export class EventCalendarComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
+  postData : any;
 
   modalData: {
     action: string;
@@ -61,13 +63,13 @@ export class EventCalendarComponent implements OnInit {
 
   actions: CalendarEventAction[] = [
     {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
+      label: '<i class="text-whight material-icons icon-sm">edit</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       }
     },
     {
-      label: '<i class="fa fa-fw fa-times"></i>',
+      label: '<i class="text-whight material-icons icon-sm">close</i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
@@ -134,7 +136,7 @@ export class EventCalendarComponent implements OnInit {
 
 
   activeDayIsOpen: boolean = true;
-  constructor(public dialog: MatDialog,private eventService : EventCalendarService) { }
+  constructor(public dialog: MatDialog,private eventService : EventCalendarService,private toastr: ToastrService) { }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -167,8 +169,34 @@ export class EventCalendarComponent implements OnInit {
     this.handleEvent('Dropped or resized', event);
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
+  handleEvent(action: string, event:any): any {
+    //this.modalData = { event, action };
+    this.postData = {
+      "event_id" : event.event_id,
+    }
+    if(action=="Edited"){
+      this.eventService.editEventService(this.postData).subscribe(responce=>{
+        if(responce.success==true){
+          const dialogRefEdit = this.dialog.open(AddeventComponent, {
+            width: '500px',
+            data: responce.data
+          });
+          dialogRefEdit.afterClosed().subscribe(result => {
+            this.showEvent();
+          });
+        }
+      });
+    }else if(action=="Deleted"){
+      this.eventService.deleteEventService(this.postData).subscribe(responce=>{
+        if(responce.success==true){
+          this.toastr.success(responce.message);
+          this.showEvent();
+        }else{
+          this.toastr.error(responce.message);
+        }
+      });
+    }
+    console.log(event);
     //this.modal.open(this.modalContent, { size: 'lg' });
   }
 
@@ -232,6 +260,15 @@ export class EventCalendarComponent implements OnInit {
             responce.data[i].start = new Date(responce.data[i].start);
             responce.data[i].end = new Date(responce.data[i].end);
             responce.data[i].title =responce.data[i].title;
+            responce.data[i]['color']={
+              "primary" : responce.data[i].primary_color,
+              "secondary" : responce.data[i].secondary_color
+            }
+            responce.data[i]['resizable']={
+              "beforeStart" : responce.data[i].beforeStart,
+              "afterEnd" : responce.data[i].afterEnd
+            }
+            responce.data[i]['actions']=this.actions;
         }
         console.log("responce",responce.data);
         this.events = responce.data;
