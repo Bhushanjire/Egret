@@ -23,7 +23,7 @@ import {
 } from 'angular-calendar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { AddeventComponent } from '../addevent/addevent.component';
-import {EventCalendarService} from '../event-calendar.service';
+import { EventCalendarService } from '../event-calendar.service';
 import { ToastrService } from 'ngx-toastr';
 const colors: any = {
   red: {
@@ -54,7 +54,7 @@ export class EventCalendarComponent implements OnInit {
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
-  postData : any;
+  postData: any;
 
   modalData: {
     action: string;
@@ -81,18 +81,18 @@ export class EventCalendarComponent implements OnInit {
   eventArray = [{
     start: startOfDay(new Date('Wed July 24 2019 02:07:09')),
     title: 'An event with no end date',
-   // color: colors.yellow,
-   // actions: this.actions
+    // color: colors.yellow,
+    // actions: this.actions
   },
   {
     start: subDays(endOfMonth(new Date()), 3),
     end: addDays(endOfMonth(new Date()), 3),
     title: 'A long event that spans 2 months',
-   // color: colors.blue,
-   // allDay: true
+    // color: colors.blue,
+    // allDay: true
   }];
 
-  events: CalendarEvent[] ;
+  events: CalendarEvent[];
   // events: CalendarEvent[] = [
   //   {
   //     start: subDays(startOfDay(new Date()), 1),
@@ -136,15 +136,27 @@ export class EventCalendarComponent implements OnInit {
 
 
   activeDayIsOpen: boolean = true;
-  constructor(public dialog: MatDialog,private eventService : EventCalendarService,private toastr: ToastrService) { }
+  constructor(public dialog: MatDialog, private eventService: EventCalendarService, private toastr: ToastrService) { }
+  ngOnInit() {
+    this.activeDayIsOpen = true;
+    this.showEvent();
+    
+  }
+
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
+       
+        
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
         events.length === 0
-      ) {
+        )
+       
+       {
+     
         this.activeDayIsOpen = false;
       } else {
+      
         this.activeDayIsOpen = true;
       }
       this.viewDate = date;
@@ -169,14 +181,14 @@ export class EventCalendarComponent implements OnInit {
     this.handleEvent('Dropped or resized', event);
   }
 
-  handleEvent(action: string, event:any): any {
+  handleEvent(action: string, event: any): any {
     //this.modalData = { event, action };
     this.postData = {
-      "event_id" : event.event_id,
+      "event_id": event.event_id,
     }
-    if(action=="Edited"){
-      this.eventService.editEventService(this.postData).subscribe(responce=>{
-        if(responce.success==true){
+    if (action == "Edited") {
+      this.eventService.editEventService(this.postData).subscribe(responce => {
+        if (responce.success == true) {
           const dialogRefEdit = this.dialog.open(AddeventComponent, {
             width: '500px',
             data: responce.data
@@ -186,12 +198,12 @@ export class EventCalendarComponent implements OnInit {
           });
         }
       });
-    }else if(action=="Deleted"){
-      this.eventService.deleteEventService(this.postData).subscribe(responce=>{
-        if(responce.success==true){
+    } else if (action == "Deleted") {
+      this.eventService.deleteEventService(this.postData).subscribe(responce => {
+        if (responce.success == true) {
           this.toastr.success(responce.message);
           this.showEvent();
-        }else{
+        } else {
           this.toastr.error(responce.message);
         }
       });
@@ -201,7 +213,7 @@ export class EventCalendarComponent implements OnInit {
   }
 
   addEvent(): void {
-    console.log("events",this.events);
+    console.log("events", this.events);
     const dialogRef = this.dialog.open(AddeventComponent, {
       width: '500px',
       //data: {name: this.name, animal: this.animal}
@@ -212,20 +224,20 @@ export class EventCalendarComponent implements OnInit {
     });
 
 
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
-        color: colors.red,
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true
-        }
-      }
-    ];
+    // this.events = [
+    //   ...this.events,
+    //   {
+    //     title: 'New event',
+    //     start: startOfDay(new Date()),
+    //     end: endOfDay(new Date()),
+    //     color: colors.red,
+    //     draggable: true,
+    //     resizable: {
+    //       beforeStart: true,
+    //       afterEnd: true
+    //     }
+    //   }
+    // ];
   }
   deleteEvent(eventToDelete: CalendarEvent) {
     this.events = this.events.filter(event => event !== eventToDelete);
@@ -238,14 +250,11 @@ export class EventCalendarComponent implements OnInit {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
-  ngOnInit() {
-   this.showEvent();
-    
-  }
 
-  showEvent(){
-    this.eventService.getEventListService().subscribe(responce=>{
-      if(responce.success==true){
+
+  showEvent() {
+    this.eventService.getEventListService().subscribe(responce => {
+      if (responce.success == true) {
         //  for(let i=0;i<responce.data.length;i++){
         //   // this.events[i]['start'] =new Date(responce.data[i].start);
         //   // this.events[i]['end'] =new Date(responce.data[i].end);
@@ -257,22 +266,22 @@ export class EventCalendarComponent implements OnInit {
         //   });
         //  }
         for (var i in responce.data) {
-            responce.data[i].start = new Date(responce.data[i].start);
-            responce.data[i].end = new Date(responce.data[i].end);
-            responce.data[i].title =responce.data[i].title;
-            responce.data[i]['color']={
-              "primary" : responce.data[i].primary_color,
-              "secondary" : responce.data[i].secondary_color
-            }
-            responce.data[i]['resizable']={
-              "beforeStart" : responce.data[i].beforeStart,
-              "afterEnd" : responce.data[i].afterEnd
-            }
-            responce.data[i]['actions']=this.actions;
+          responce.data[i].start = new Date(responce.data[i].start);
+          responce.data[i].end = new Date(responce.data[i].end);
+          responce.data[i].title = responce.data[i].title;
+          responce.data[i]['color'] = {
+            "primary": responce.data[i].primary_color,
+            "secondary": responce.data[i].secondary_color
+          }
+          responce.data[i]['resizable'] = {
+            "beforeStart": responce.data[i].beforeStart,
+            "afterEnd": responce.data[i].afterEnd
+          }
+          responce.data[i]['actions'] = this.actions;
         }
-        console.log("responce",responce.data);
+        console.log("responce", responce.data);
         this.events = responce.data;
-      }else{
+      } else {
       }
     });
   }

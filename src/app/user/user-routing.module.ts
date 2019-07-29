@@ -50,6 +50,10 @@ const Userroutes: Routes = [
       {
         path : 'EventCalendar',
         loadChildren : () =>import('../event-calendar/event-calendar.module').then(mod=>mod.EventCalendarModule)
+      },
+      {
+        path : 'todo',
+        loadChildren : () =>import('../todo/todo.module').then(mod=>mod.TodoModule)
       }
     ]
   },
